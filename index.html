@@ -33,6 +33,19 @@
     button { background: #ff9800; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: bold; transition: transform 0.2s ease, background 0.3s ease; }
     button:hover { background: #e68900; transform: scale(1.05); }
 
+    .btn-info {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: #4caf50;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .btn-info:hover { background: #388e3c; }
+
     /* Sobre la tienda */
     #sobre { background: #e8f5e9; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; }
     #sobre img { max-width: 300px; margin: 1rem auto; display: block; border-radius: 12px; }
@@ -114,6 +127,7 @@
           <p>Jugosa y fresca. Cultivada en el Valle. Rica en vitamina C. <br>Precio: $2.000/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Naranja', 2000, this)">Agregar</button>
+          <a href="frutas/naranja.html" class="btn-info">Más información</a>
         </div>
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
           <img src="img/limon.jpg" alt="limon" />
@@ -121,6 +135,7 @@
           <p>Ácido y refrescante. Cultivado en el Valle. Rico en vitamina C y antioxidantes. <br>Precio: $3.000/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Limón', 3000, this)">Agregar</button>
+          <a href="frutas/limon.html" class="btn-info">Más información</a>
         </div>
         <div class="producto" data-aos="zoom-in" data-aos-delay="200">
           <img src="img/mango.jpg" alt="mango" />
@@ -128,6 +143,7 @@
           <p>Dulce y carnoso. Cultivado en Cundinamarca. Fuente de antioxidantes. <br>Precio: $5.000/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Mango', 5000, this)">Agregar</button>
+          <a href="frutas/mango.html" class="btn-info">Más información</a>
         </div>
       </div>
     </section>
@@ -142,6 +158,7 @@
           <p>Rica en hierro y vitaminas. Cultivada en Boyacá. <br>Precio: $2.200/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Espinaca', 2200, this)">Agregar</button>
+          <a href="verduras/espinaca.html" class="btn-info">Más información</a>
         </div>
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
           <img src="img/zanahoria.jpg" alt="zanahoria" />
@@ -149,6 +166,7 @@
           <p>Buena para la vista. Cultivada en el Tolima. <br>Precio: $2.500/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Zanahoria', 2500, this)">Agregar</button>
+          <a href="verduras/zanahoria.html" class="btn-info">Más información</a>
         </div>
         <div class="producto" data-aos="zoom-in" data-aos-delay="200">
           <img src="img/papa.jpg" alt="papa" />
@@ -156,6 +174,7 @@
           <p>Versátil en la cocina y recien salida de la tierra. Cultivada en Antioquia <br>Precio: $1.500/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Papa', 1500, this)">Agregar</button>
+          <a href="verduras/papa.html" class="btn-info">Más información</a>
         </div>
       </div>
     </section>
@@ -170,6 +189,7 @@
           <p>1kg de Mango + 1kg de Piña. <br>Precio: $8.500</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Combo Frutas', 8500, this)">Agregar</button>
+          <a href="ofertas/combo1.html" class="btn-info">Más información</a>
         </div>
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
           <img src="img/combo2.jpg" alt="combo verduras" />
@@ -177,6 +197,7 @@
           <p>1kg de Papa + 1kg de Zanahoria. <br>Precio: $3.700</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Combo Verduras', 3700, this)">Agregar</button>
+          <a href="ofertas/combo2.html" class="btn-info">Más información</a>
         </div>
       </div>
     </section>
@@ -218,8 +239,8 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 1000, // duración en ms
-      once: true      // animar solo una vez
+      duration: 1000,
+      once: true
     });
   </script>
 </body>
