@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naranja - EcoMercado</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; color: #fff; }
+    header { background: linear-gradient(90deg, #4caf50, #ff9800); padding: 1.5rem; color: white; text-align: center; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: 600; }
+    nav a:hover { text-decoration: underline; }
+
+    /* Fondo difuminado */
+    main {
+      background: url("../img/espinaca.jpg") no-repeat center center/cover;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    main::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6); /* capa oscura para contraste */
+      backdrop-filter: blur(3px); /* difumina el fondo */
+    }
+
+    .detalle {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 700px;
+      text-align: left;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+
+    h2 { color: #ffeb3b; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+    p, li { color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); line-height: 1.6; }
+    ul { margin: 1rem 0; padding-left: 1.2rem; }
+
+    .btn-info {
+      background: #ff9800;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .btn-info:hover { background: #e68900; transform: scale(1.05); }
+
+    footer { background: #333; color: white; text-align: center; padding: 2rem; }
+    footer a { color: #ff9800; text-decoration: none; margin: 0 0.5rem; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 data-aos="fade-down">EcoMercado Online</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../index.html#frutas">Frutas</a>
+      <a href="../index.html#verduras">Verduras</a>
+      <a href="../index.html#ofertas">Ofertas</a>
+      <a href="../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="detalle" data-aos="fade-up">
+      <h2>Espinaca</h2>
+      <p><strong>Precio:</strong> $2.200/kg</p>
+      <p><strong>Origen:</strong> Cultivada en Boyaca, bajo prácticas agrícolas sostenibles.</p>
+
+      <h3>Beneficios nutricionales:</h3>
+      <ul>
+        <li>Rica en hierro, ácido fólico y clorofila, lo que la hace ideal para prevenir la anemia.</li>
+        <li>Contiene vitamina K, necesaria para la coagulación sanguínea y la salud ósea.</li>
+        <li>Gran aporte de magnesio y calcio, minerales clave para los músculos y el sistema nervioso.</li>
+        <li>Baja en calorías, perfecta para dietas de control de peso.</li>
+      </ul>
+
+      <h3>Usos recomendados:</h3>
+      <p>Ideal para jugos naturales, ensaladas de frutas, postres, mermeladas y repostería.</p>
+
+      <h3>Dato curioso:</h3>
+      <p>Una sola naranja aporta más del 60% de la vitamina C diaria recomendada. ¡Es tu aliada contra la gripe!</p>
+
+      <a href="../index.html" class="btn-info">⬅ Volver a la tienda</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EcoMercado Online</p>
+    <p>
+      <a href="#">Política de privacidad</a> |
+      <a href="#">Términos y condiciones</a> |
+      Síguenos en <a href="#">Facebook</a> - <a href="#">Instagram</a>
+    </p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
