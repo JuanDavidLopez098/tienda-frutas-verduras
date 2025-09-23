@@ -179,27 +179,37 @@
   </style>
 
   <script>
-    let cart = [];
-    function addToCart(product, price, element) {
-      const quantity = parseInt(element.previousElementSibling.value);
-      const item = { name: product, price: price, quantity: quantity };
-      cart.push(item);
-      renderCart();
-    }
-    function renderCart() {
-      const cartItems = document.getElementById('cart-items');
-      const cartTotal = document.getElementById('cart-total');
-      cartItems.innerHTML = '';
-      let total = 0;
-      cart.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
-        cartItems.appendChild(li);
-        total += item.price * item.quantity;
-      });
-      cartTotal.textContent = total;
-    }
-  </script>
+  let cart = [];
+
+  function addToCart(product, price, element) {
+    const quantity = parseInt(element.previousElementSibling.value);
+    const item = { name: product, price: price, quantity: quantity };
+    cart.push(item);
+    renderCart();
+  }
+
+  function renderCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
+      cartItems.appendChild(li);
+      total += item.price * item.quantity;
+    });
+
+    cartTotal.textContent = total;
+  }
+
+  function finalizarCompra() {
+    localStorage.setItem("carrito", JSON.stringify(cart));
+    window.location.href = "gracias.html";
+  }
+</script>
+  
 </head>
 <body>
   <header data-aos="fade-down">
@@ -324,13 +334,13 @@
 
     <!-- Carrito -->
     <section id="carrito" data-aos="fade-left">
-      <h2>🛒 Tu Carrito de Compras</h2>
-      <ul id="cart-items"></ul>
-      <div class="cart-summary">
-        <p>Total a pagar: $<span id="cart-total">0</span></p>
-        <a href="gracias.html" class="btn-info">Finalizar Compra</a>
-      </div>
-    </section>  
+  <h2>🛒 Tu Carrito de Compras</h2>
+  <ul id="cart-items"></ul>
+  <div class="cart-summary">
+    <p>Total a pagar: $<span id="cart-total">0</span></p>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+  </div>
+</section>  
   </main>
 
     <footer>
