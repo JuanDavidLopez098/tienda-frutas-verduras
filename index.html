@@ -12,25 +12,89 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #fefefe; color: #333; }
-    header { background: linear-gradient(90deg, #4caf50, #ff9800); padding: 1.5rem; color: white; text-align: center; }
-    nav ul { display: flex; justify-content: center; list-style: none; padding: 0; margin: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("img/tablones.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fefefe;
+      position: relative;
+    }
+
+    /* Oscurecer un poco el fondo para que el texto sea legible */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    header {
+      background: linear-gradient(90deg, #4caf50, #ff9800);
+      padding: 1.5rem;
+      color: white;
+      text-align: center;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
     nav ul li { margin: 0 1rem; }
     nav ul li a { color: white; text-decoration: none; font-weight: 600; }
     nav ul li a:hover { text-decoration: underline; }
 
-    section { padding: 3rem 2rem; max-width: 1200px; margin: auto; }
-    h1, h2, h3, h4 { font-weight: 600; }
-    h2 { color: #4caf50; margin-bottom: 1.5rem; text-align: center; }
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-    .productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-    .producto { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; }
-    .producto img { max-width: 100%; border-radius: 8px; height: 150px; object-fit: cover; }
-    .producto h4 { margin: 0.5rem 0; color: #333; }
-    .producto p { font-size: 0.9rem; color: #555; }
+    h1, h2, h3, h4 { font-weight: 600; }
+    h2 { color: #ffeb3b; margin-bottom: 1.5rem; text-align: center; }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .producto {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      text-align: center;
+      color: #333;
+    }
+
+    .producto img {
+      max-width: 100%;
+      border-radius: 8px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .producto h4 { margin: 0.5rem 0; color: #222; }
+    .producto p { font-size: 0.9rem; color: #444; }
     .producto input { width: 60px; margin: 0.5rem 0; }
 
-    button { background: #ff9800; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: bold; transition: transform 0.2s ease, background 0.3s ease; }
+    button {
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
     button:hover { background: #e68900; transform: scale(1.05); }
 
     .btn-info {
@@ -47,49 +111,86 @@
     .btn-info:hover { background: #388e3c; }
 
     /* Sobre la tienda */
-    #sobre { background: #e8f5e9; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; }
+    #sobre {
+      background: rgba(76, 175, 80, 0.8);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      text-align: center;
+      color: white;
+    }
     #sobre img { max-width: 300px; margin: 1rem auto; display: block; border-radius: 12px; }
 
     /* Contacto */
-    #contacto { background: #f5f5f5; border-radius: 12px; padding: 2rem; }
-    #contacto form { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
-    form input, form textarea { width: 100%; margin: 0.5rem 0; padding: 0.8rem; border-radius: 6px; border: 1px solid #ccc; font-family: 'Poppins', sans-serif; }
+    #contacto {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 2rem;
+      color: #333;
+    }
+    #contacto form {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: auto;
+    }
+    form input, form textarea {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
+    }
 
     /* Carrito */
-    #carrito { background: #fff8e1; border-radius: 12px; padding: 2rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); max-width: 700px; margin: 3rem auto; border: 2px solid #4caf50; }
+    #carrito {
+      background: rgba(255, 248, 225, 0.95);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      max-width: 700px;
+      margin: 3rem auto;
+      border: 2px solid #4caf50;
+      color: #333;
+    }
     #cart-items { list-style: none; padding: 0; margin: 1rem 0; }
     #cart-items li { padding: 0.5rem; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; }
     #cart-total { font-weight: bold; color: #4caf50; font-size: 1.3rem; }
     .cart-summary { text-align: right; margin-top: 1rem; }
 
-    footer { background: #333; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
     footer a { color: #ff9800; text-decoration: none; margin: 0 0.5rem; }
     footer a:hover { text-decoration: underline; }
   </style>
 
   <script>
     let cart = [];
-
     function addToCart(product, price, element) {
       const quantity = parseInt(element.previousElementSibling.value);
       const item = { name: product, price: price, quantity: quantity };
       cart.push(item);
       renderCart();
     }
-
     function renderCart() {
       const cartItems = document.getElementById('cart-items');
       const cartTotal = document.getElementById('cart-total');
       cartItems.innerHTML = '';
       let total = 0;
-
       cart.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
         cartItems.appendChild(li);
         total += item.price * item.quantity;
       });
-
       cartTotal.textContent = total;
     }
   </script>
@@ -109,122 +210,7 @@
     </nav>
   </header>
 
-  <main>
-    <!-- Sobre la tienda -->
-    <section id="sobre" data-aos="fade-up">
-      <h2>Sobre EcoMercado</h2>
-      <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales. Nuestro objetivo es llevar a tu mesa productos de calidad y fomentar el consumo responsable.</p>
-      <img src="img/campo.jpg" alt="Del campo a la puerta de tu hogar" />
-    </section>
-
-    <!-- Frutas -->
-    <section id="frutas">
-      <h2 data-aos="fade-up">Frutas</h2>
-      <div class="productos">
-        <div class="producto" data-aos="zoom-in">
-          <img src="img/naranja.jpg" alt="naranja" />
-          <h4>Naranja</h4>
-          <p>Jugosa y fresca. Cultivada en el Valle. Rica en vitamina C. <br>Precio: $2.000/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Naranja', 2000, this)">Agregar</button>
-          <a href="frutas/naranja.html" class="btn-info">Más información</a>
-        </div>
-        <div class="producto" data-aos="zoom-in" data-aos-delay="100">
-          <img src="img/limon.jpg" alt="limon" />
-          <h4>Limón</h4>
-          <p>Ácido y refrescante. Cultivado en el Valle. Rico en vitamina C y antioxidantes. <br>Precio: $3.000/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Limón', 3000, this)">Agregar</button>
-          <a href="frutas/limon.html" class="btn-info">Más información</a>
-        </div>
-        <div class="producto" data-aos="zoom-in" data-aos-delay="200">
-          <img src="img/mango.jpg" alt="mango" />
-          <h4>Mango</h4>
-          <p>Dulce y carnoso. Cultivado en Cundinamarca. Fuente de antioxidantes. <br>Precio: $5.000/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Mango', 5000, this)">Agregar</button>
-          <a href="frutas/mango.html" class="btn-info">Más información</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Verduras -->
-    <section id="verduras">
-      <h2 data-aos="fade-up">Verduras</h2>
-      <div class="productos">
-        <div class="producto" data-aos="zoom-in">
-          <img src="img/espinaca.jpg" alt="espinaca" />
-          <h4>Espinaca</h4>
-          <p>Rica en hierro y vitaminas. Cultivada en Boyacá. <br>Precio: $2.200/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Espinaca', 2200, this)">Agregar</button>
-          <a href="verduras/espinaca.html" class="btn-info">Más información</a>
-        </div>
-        <div class="producto" data-aos="zoom-in" data-aos-delay="100">
-          <img src="img/zanahoria.jpg" alt="zanahoria" />
-          <h4>Zanahoria</h4>
-          <p>Buena para la vista. Cultivada en el Tolima. <br>Precio: $2.500/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Zanahoria', 2500, this)">Agregar</button>
-          <a href="verduras/zanahoria.html" class="btn-info">Más información</a>
-        </div>
-        <div class="producto" data-aos="zoom-in" data-aos-delay="200">
-          <img src="img/papa.jpg" alt="papa" />
-          <h4>Papa</h4>
-          <p>Versátil en la cocina. Cultivada en Antioquia <br>Precio: $1.500/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Papa', 1500, this)">Agregar</button>
-          <a href="verduras/papa.html" class="btn-info">Más información</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ofertas -->
-    <section id="ofertas">
-      <h2 data-aos="fade-up">Ofertas</h2>
-      <div class="productos">
-        <div class="producto" data-aos="zoom-in">
-          <img src="img/combo1.jpg" alt="combo frutas" />
-          <h4>Combo Frutas</h4>
-          <p>1kg de Mango + 1kg de Piña. <br>Precio: $8.500</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Combo Frutas', 8500, this)">Agregar</button>
-          <a href="ofertas/combo1.html" class="btn-info">Más información</a>
-        </div>
-        <div class="producto" data-aos="zoom-in" data-aos-delay="100">
-          <img src="img/combo2.jpg" alt="combo verduras" />
-          <h4>Combo Verduras</h4>
-          <p>1kg de Papa + 1kg de Zanahoria. <br>Precio: $3.700</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Combo Verduras', 3700, this)">Agregar</button>
-          <a href="ofertas/combo2.html" class="btn-info">Más información</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contacto -->
-    <section id="contacto" data-aos="fade-right">
-      <h2>Contacto</h2>
-      <p>📞 Teléfono: 300 123 4567 | 📧 Email: contacto@ecomercado.com</p>
-      <p>🕒 Horario: Lunes a Sábado - 8am a 6pm</p>
-      <form>
-        <label>Nombre: <input type="text" required /></label><br />
-        <label>Email: <input type="email" required /></label><br />
-        <label>Mensaje:<br /><textarea required></textarea></label><br />
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-
-    <!-- Carrito -->
-    <section id="carrito" data-aos="fade-left">
-      <h2>🛒 Tu Carrito de Compras</h2>
-      <ul id="cart-items"></ul>
-      <div class="cart-summary">
-        <p>Total a pagar: $<span id="cart-total">0</span></p>
-        <button>Finalizar Compra</button>
-      </div>
-    </section>  
-  </main>
+  <!-- Aquí seguirían las secciones que ya tienes (sobre, frutas, verduras, ofertas, contacto, carrito, etc.) -->
 
   <footer>
     <p>&copy; 2025 EcoMercado Online</p>
