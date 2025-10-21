@@ -59,15 +59,10 @@
     h1, h2, h3, h4 { font-weight: 600; }
 
     h2 { 
-      color: #00e676;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      color: #00e676; margin-bottom: 1.5rem; text-align: center;
     }
 
-    #contacto h2,
-    #carrito h2 {
-      color: #2e7d32;
-    }
+    #contacto h2, #carrito h2 { color: #2e7d32; }
 
     .productos {
       display: grid;
@@ -142,7 +137,7 @@
       background: rgba(245, 245, 245, 0.9);
       border-radius: 12px;
       padding: 2rem;
-      color: #000;
+      color: #000;   
     }
 
     #contacto form {
@@ -156,8 +151,7 @@
       color: #000;
     }
 
-    form input, 
-    form textarea {
+    form input, form textarea {
       width: 90%;
       display: block;
       margin: 0.5rem auto;
@@ -167,6 +161,26 @@
       font-family: 'Poppins', sans-serif;
       box-sizing: border-box;
       color: #000;
+    }
+
+    /* Mensaje de confirmación */
+    #mensaje-confirmacion {
+      display: none;
+      text-align: center;
+      background: rgba(76, 175, 80, 0.9);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      margin: 20px auto 0;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      max-width: 600px;
+      animation: aparecer 0.4s ease forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Carrito */
@@ -182,19 +196,8 @@
     }
 
     #cart-items { list-style: none; padding: 0; margin: 1rem 0; }
-    #cart-items li {
-      padding: 0.5rem;
-      border-bottom: 1px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    #cart-total {
-      font-weight: bold;
-      color: #4caf50;
-      font-size: 1.3rem;
-    }
-
+    #cart-items li { padding: 0.5rem; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; }
+    #cart-total { font-weight: bold; color: #4caf50; font-size: 1.3rem; }
     .cart-summary { text-align: right; margin-top: 1rem; }
 
     footer {
@@ -204,64 +207,50 @@
       padding: 2rem;
       margin-top: 2rem;
     }
-
-    footer a {
-      color: #ff9800;
-      text-decoration: none;
-      margin: 0 0.5rem;
-    }
+    footer a { color: #ff9800; text-decoration: none; margin: 0 0.5rem; }
     footer a:hover { text-decoration: underline; }
   </style>
 
-  <!-- SCRIPT DEL CARRITO ACTUALIZADO -->
   <script>
-  let cart = [];
+    let cart = [];
 
-  // Cargar el carrito desde localStorage al iniciar
-  window.onload = function() {
-    const carritoGuardado = localStorage.getItem("carrito");
-    if (carritoGuardado) {
-      cart = JSON.parse(carritoGuardado);
+    function addToCart(product, price, element) {
+      const quantity = parseInt(element.previousElementSibling.value);
+      const item = { name: product, price: price, quantity: quantity };
+      cart.push(item);
       renderCart();
+      localStorage.setItem("carrito", JSON.stringify(cart));
     }
-  };
 
-  // Agregar productos desde el index
-  function addToCart(product, price, element) {
-    const quantity = parseInt(element.previousElementSibling.value);
-    const item = { name: product, price: price, quantity: quantity };
-    cart.push(item);
-    guardarYRenderizar();
-  }
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+      let total = 0;
 
-  // Renderizar el carrito
-  function renderCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    cartItems.innerHTML = '';
-    let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
+      });
 
-    cart.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
-      cartItems.appendChild(li);
-      total += item.price * item.quantity;
-    });
+      cartTotal.textContent = total;
+    }
 
-    cartTotal.textContent = total;
-  }
+    function finalizarCompra() {
+      localStorage.setItem("carrito", JSON.stringify(cart));
+      window.location.href = "gracias.html";
+    }
 
-  // Guardar en localStorage y actualizar vista
-  function guardarYRenderizar() {
-    localStorage.setItem("carrito", JSON.stringify(cart));
-    renderCart();
-  }
-
-  // Finalizar compra
-  function finalizarCompra() {
-    localStorage.setItem("carrito", JSON.stringify(cart));
-    window.location.href = "gracias.html";
-  }
+    // Cargar carrito guardado si existe
+    window.onload = function() {
+      const guardado = localStorage.getItem("carrito");
+      if (guardado) {
+        cart = JSON.parse(guardado);
+        renderCart();
+      }
+    }
   </script>
 </head>
 
@@ -270,7 +259,7 @@
     <h1>EcoMercado Online</h1>
     <nav>
       <ul>
-        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        <li><a href="#sobre">Sobre Nosotros</a></li>
         <li><a href="#frutas">Frutas</a></li>
         <li><a href="#verduras">Verduras</a></li>
         <li><a href="#ofertas">Ofertas</a></li>
@@ -281,7 +270,7 @@
   </header>
 
   <main>
-    <!-- SOBRE LA TIENDA -->
+    <!-- SOBRE NOSOTROS -->
     <section id="sobre" data-aos="fade-up">
       <h2>Sobre EcoMercado</h2>
       <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales. Nuestro objetivo es llevar a tu mesa productos de calidad y fomentar el consumo responsable.</p>
@@ -296,23 +285,25 @@
         <div class="producto" data-aos="zoom-in">
           <img src="img/naranja.jpg" alt="naranja" />
           <h4>Naranja</h4>
-          <p>Jugosa y fresca. Rica en vitamina C. <br>Precio: $2.000/kg</p>
+          <p>Jugosa y fresca. Cultivada en el Valle. Rica en vitamina C. <br>Precio: $2.000/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Naranja', 2000, this)">Agregar</button>
           <a href="frutas/naranja.html" class="btn-info">Más información</a>
         </div>
+
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
           <img src="img/limon.jpg" alt="limon" />
           <h4>Limón</h4>
-          <p>Ácido y refrescante. Rico en antioxidantes. <br>Precio: $3.000/kg</p>
+          <p>Ácido y refrescante. Cultivado en el Valle. Rico en antioxidantes. <br>Precio: $3.000/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Limón', 3000, this)">Agregar</button>
           <a href="frutas/limon.html" class="btn-info">Más información</a>
         </div>
+
         <div class="producto" data-aos="zoom-in" data-aos-delay="200">
           <img src="img/mango.jpg" alt="mango" />
           <h4>Mango</h4>
-          <p>Dulce y carnoso. Fuente de antioxidantes. <br>Precio: $5.000/kg</p>
+          <p>Dulce y carnoso. Cultivado en Cundinamarca. Fuente de antioxidantes. <br>Precio: $5.000/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Mango', 5000, this)">Agregar</button>
           <a href="frutas/mango.html" class="btn-info">Más información</a>
@@ -327,23 +318,25 @@
         <div class="producto" data-aos="zoom-in">
           <img src="img/espinaca.jpg" alt="espinaca" />
           <h4>Espinaca</h4>
-          <p>Rica en hierro y vitaminas. <br>Precio: $2.200/kg</p>
+          <p>Rica en hierro y vitaminas. Cultivada en Boyacá. <br>Precio: $2.200/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Espinaca', 2200, this)">Agregar</button>
           <a href="verduras/espinaca.html" class="btn-info">Más información</a>
         </div>
+
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
           <img src="img/zanahoria.jpg" alt="zanahoria" />
           <h4>Zanahoria</h4>
-          <p>Buena para la vista. <br>Precio: $2.500/kg</p>
+          <p>Buena para la vista. Cultivada en el Tolima. <br>Precio: $2.500/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Zanahoria', 2500, this)">Agregar</button>
           <a href="verduras/zanahoria.html" class="btn-info">Más información</a>
         </div>
+
         <div class="producto" data-aos="zoom-in" data-aos-delay="200">
           <img src="img/papa.jpg" alt="papa" />
           <h4>Papa</h4>
-          <p>Versátil en la cocina. <br>Precio: $1.500/kg</p>
+          <p>Versátil en la cocina. Cultivada en Antioquia. <br>Precio: $1.500/kg</p>
           <input type="number" min="1" value="1" />
           <button onclick="addToCart('Papa', 1500, this)">Agregar</button>
           <a href="verduras/papa.html" class="btn-info">Más información</a>
@@ -363,6 +356,7 @@
           <button onclick="addToCart('Combo Frutas', 8500, this)">Agregar</button>
           <a href="ofertas/combo1.html" class="btn-info">Más información</a>
         </div>
+
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
           <img src="img/combo2.jpg" alt="combo verduras" />
           <h4>Combo Verduras</h4>
@@ -379,12 +373,15 @@
       <h2>Contacto</h2>
       <p>📞 Teléfono: 300 123 4567 | 📧 Email: contacto@ecomercado.com</p>
       <p>🕒 Horario: Lunes a Sábado - 8am a 6pm</p>
-      <form>
+
+      <form id="contact-form">
         <label>Nombre: <input type="text" required /></label><br />
         <label>Email: <input type="email" required /></label><br />
         <label>Mensaje:<br /><textarea required></textarea></label><br />
         <button type="submit">Enviar</button>
       </form>
+
+      <div id="mensaje-confirmacion"></div>
     </section>
 
     <!-- CARRITO -->
@@ -395,7 +392,7 @@
         <p>Total a pagar: $<span id="cart-total">0</span></p>
         <button onclick="finalizarCompra()">Finalizar Compra</button>
       </div>
-    </section>
+    </section>  
   </main>
 
   <footer>
@@ -410,9 +407,22 @@
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
+    AOS.init({ duration: 1000, once: true });
+
+    // ✉️ Script de contacto
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const mensaje = document.getElementById('mensaje-confirmacion');
+      mensaje.textContent = "✅ ¡Gracias por contactarnos! Hemos recibido tu mensaje y te responderemos pronto.";
+      mensaje.style.display = "block";
+      this.reset();
+      setTimeout(() => {
+        mensaje.style.opacity = "0";
+        setTimeout(() => {
+          mensaje.style.display = "none";
+          mensaje.style.opacity = "1";
+        }, 500);
+      }, 4000);
     });
   </script>
 </body>
