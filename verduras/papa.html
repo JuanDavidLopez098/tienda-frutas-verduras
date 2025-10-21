@@ -32,13 +32,13 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6); /* capa oscura para contraste */
-      backdrop-filter: blur(3px); /* difumina el fondo */
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
     }
 
     .detalle {
       position: relative;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       padding: 2rem;
       max-width: 700px;
@@ -51,7 +51,19 @@
     p, li { color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); line-height: 1.6; }
     ul { margin: 1rem 0; padding-left: 1.2rem; }
 
-    .btn-info {
+    label { font-weight: bold; margin-top: 1rem; display: block; }
+
+    input[type="number"] {
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: none;
+      width: 80px;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+
+    .btn {
       background: #ff9800;
       padding: 0.6rem 1.2rem;
       border-radius: 6px;
@@ -61,12 +73,21 @@
       display: inline-block;
       margin-top: 1rem;
       transition: background 0.3s ease, transform 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
-    .btn-info:hover { background: #e68900; transform: scale(1.05); }
+    .btn:hover { background: #e68900; transform: scale(1.05); }
 
     footer { background: #333; color: white; text-align: center; padding: 2rem; }
     footer a { color: #ff9800; text-decoration: none; margin: 0 0.5rem; }
     footer a:hover { text-decoration: underline; }
+
+    #mensaje {
+      color: #00e676;
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -85,23 +106,30 @@
     <div class="detalle" data-aos="fade-up">
       <h2>Papa</h2>
       <p><strong>Precio:</strong> $1.500/kg</p>
-      <p><strong>Origen:</strong> Cultivada en Antioquia, bajo prácticas agrícolas sostenibles.</p>
+      <p><strong>Origen:</strong>Cultivada en Antioquia, bajo prácticas agrícolas sostenibles.</p>
 
       <h3>Beneficios nutricionales:</h3>
       <ul>
-        <li>Fuente principal de carbohidratos complejos, ideales para obtener energía sostenida.</li>
+<li>Fuente principal de carbohidratos complejos, ideales para obtener energía sostenida.</li>
         <li>Rica en vitamina B6, necesaria para el metabolismo de proteínas.</li>
         <li>Contiene potasio, que ayuda al buen funcionamiento de los músculos.</li>
         <li>AAporta fibra si se consume con cáscara.</li>
       </ul>
 
       <h3>Usos recomendados:</h3>
-      <p>Implementada en purés suaves para acompañar carnes o popurlamente en Colombia para sopas, sancochos y ajiacos. No olvidemos tambien las papas a la francesa.</p>
+       <p>Implementada en purés suaves para acompañar carnes o popurlamente en Colombia para sopas, sancochos y ajiacos. No olvidemos tambien las papas a la francesa.</p>
 
       <h3>Dato curioso:</h3>
-      <p>La papa es originaria de los Andes y fue uno de los primeros cultivos domesticados en América hace más de 7.000 años. Además, fue el primer alimento cultivado en el espacio por la NASA en 1995.</p>
+<p>La papa es originaria de los Andes y fue uno de los primeros cultivos domesticados en América hace más de 7.000 años. Además, fue el primer alimento cultivado en el espacio por la NASA en 1995.</p>
 
-      <a href="../index.html" class="btn-info">⬅ Volver a la tienda</a>
+      <!-- Agregar cantidad y carrito -->
+      <label for="cantidad">Cantidad (kg):</label>
+      <input type="number" id="cantidad" min="1" value="1">
+      <button class="btn" onclick="agregarAlCarrito()">Agregar al carrito 🛒</button>
+      <div id="mensaje"></div>
+
+      <!-- Botón para volver -->
+      <a href="../index.html" class="btn">⬅ Volver a la tienda</a>
     </div>
   </main>
 
@@ -117,10 +145,21 @@
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
+
+    function agregarAlCarrito() {
+      const cantidad = parseInt(document.getElementById("cantidad").value);
+      const producto = { name: "Papa", price: 1500, quantity: cantidad };
+
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.push(producto);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+
+      const mensaje = document.getElementById("mensaje");
+      mensaje.textContent = "✅ Producto agregado al carrito.";
+      setTimeout(() => mensaje.textContent = "", 2000);
+    }
   </script>
 </body>
 </html>
+
