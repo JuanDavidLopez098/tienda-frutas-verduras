@@ -149,7 +149,7 @@
 
     function agregarAlCarrito() {
       const cantidad = parseInt(document.getElementById("cantidad").value);
-      const producto = { name: "Naranja", price: 2000, quantity: cantidad };
+      const producto = { name: "Mango", price: 5000, quantity: cantidad };
 
       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
       carrito.push(producto);
