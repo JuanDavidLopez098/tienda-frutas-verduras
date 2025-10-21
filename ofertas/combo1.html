@@ -32,13 +32,13 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6); /* capa oscura para contraste */
-      backdrop-filter: blur(3px); /* difumina el fondo */
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
     }
 
     .detalle {
       position: relative;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       padding: 2rem;
       max-width: 700px;
@@ -51,7 +51,19 @@
     p, li { color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); line-height: 1.6; }
     ul { margin: 1rem 0; padding-left: 1.2rem; }
 
-    .btn-info {
+    label { font-weight: bold; margin-top: 1rem; display: block; }
+
+    input[type="number"] {
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: none;
+      width: 80px;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+
+    .btn {
       background: #ff9800;
       padding: 0.6rem 1.2rem;
       border-radius: 6px;
@@ -61,12 +73,21 @@
       display: inline-block;
       margin-top: 1rem;
       transition: background 0.3s ease, transform 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
-    .btn-info:hover { background: #e68900; transform: scale(1.05); }
+    .btn:hover { background: #e68900; transform: scale(1.05); }
 
     footer { background: #333; color: white; text-align: center; padding: 2rem; }
     footer a { color: #ff9800; text-decoration: none; margin: 0 0.5rem; }
     footer a:hover { text-decoration: underline; }
+
+    #mensaje {
+      color: #00e676;
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -84,27 +105,31 @@
   <main>
     <div class="detalle" data-aos="fade-up">
       <h2>Combo Frutas</h2>
-      <p><strong>Precio:</strong> $8.500</p>
-      <p><strong>Nuevo combo que trae:</strong> Piña y Mango cultivado bajo prácticas agrícolas sostenibles.</p>
+      <p><strong>Precio:</strong> $8.500/kg</p>
+      <p><strong>Nuevo combo que trae:</strong>Piña y Mango cultivado bajo prácticas agrícolas sostenibles.</p>
 
-      <h3>¿Por qué comprar este combo?</h3>
+      <h3>¿Porque comprar este combo?</h3>
       <ul>
-        <li>Incluye piña, una fruta que no está disponible para la venta por kilo de manera individual en nuestra tienda, por lo que solo podrás conseguirla en este paquete especial.</li>
+<li>Incluye piña, una fruta que no está disponible para la venta por kilo de manera individual en nuestra tienda, por lo que solo podrás conseguirla en este paquete especial.</li>
         <li>El precio del combo es más conveniente que comprar las frutas por separado: aprovechas un ahorro de hasta el 15%.</li>
         <li>Es una combinación perfecta entre la dulzura del mango y el toque ácido de la piña, ideal para jugos energizantes y postres tropicales.</li>
       </ul>
 
       <h3>Beneficios nutricionales:</h3>
-      <ul>
-      <li>El mango aporta vitamina A y antioxidantes, fortaleciendo la visión y el sistema inmune.</li>
+<li>El mango aporta vitamina A y antioxidantes, fortaleciendo la visión y el sistema inmune.</li>
       <li>La piña contiene bromelina, enzima que mejora la digestión de proteínas y reduce la inflamación.</li>
       <li>Ambos son ricos en vitamina C, ayudando a prevenir resfriados y mantener la piel saludable.</li>
-      </ul>
-
       <h3>Dato curioso:</h3>
-      <p>La piña en Europa del siglo XVII era tan exclusiva que se alquilaba como centro de mesa en fiestas de lujo. Con este combo puedes tenerla en tu mesa de forma accesible y deliciosa.</p>
+<p>La piña en Europa del siglo XVII era tan exclusiva que se alquilaba como centro de mesa en fiestas de lujo. Con este combo puedes tenerla en tu mesa de forma accesible y deliciosa.</p>
 
-      <a href="../index.html" class="btn-info">⬅ Volver a la tienda</a>
+      <!-- Agregar cantidad y carrito -->
+      <label for="cantidad">Cantidad (kg):</label>
+      <input type="number" id="cantidad" min="1" value="1">
+      <button class="btn" onclick="agregarAlCarrito()">Agregar al carrito 🛒</button>
+      <div id="mensaje"></div>
+
+      <!-- Botón para volver -->
+      <a href="../index.html" class="btn">⬅ Volver a la tienda</a>
     </div>
   </main>
 
@@ -120,10 +145,21 @@
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
+
+    function agregarAlCarrito() {
+      const cantidad = parseInt(document.getElementById("cantidad").value);
+      const producto = { name: "Combo Frutas", price: 8500, quantity: cantidad };
+
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.push(producto);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+
+      const mensaje = document.getElementById("mensaje");
+      mensaje.textContent = "✅ Producto agregado al carrito.";
+      setTimeout(() => mensaje.textContent = "", 2000);
+    }
   </script>
 </body>
 </html>
+
