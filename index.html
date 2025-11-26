@@ -254,6 +254,109 @@
       margin-top: 2rem;
     }
 
+    /* ===============================
+   POP-UP DEL CARRITO — DISEÑO PRO
+   =============================== */
+
+.popup-box {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  width: 320px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  padding: 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  animation: fadeInPopup 0.35s ease-out;
+  z-index: 9999;
+}
+
+@keyframes fadeInPopup {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Encabezado */
+.popup-header {
+  background: #4caf50;
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 14px 14px 0 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Botón cerrar */
+.close-popup {
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.2s ease;
+}
+.close-popup:hover { color: #ffeb3b; }
+
+/* Formulario */
+.popup-box form {
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.popup-box label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.popup-box input,
+.popup-box textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.popup-box textarea {
+  resize: none;
+}
+
+/* Botón enviar */
+.popup-box button {
+  width: 100%;
+  padding: 10px;
+  background: #4caf50;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+
+.popup-box button:hover {
+  background: #3b8c3e;
+}
+
+/* Mensaje enviado */
+#popup-msg {
+  margin: 0 1rem 1rem 1rem;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 8px;
+  background: #00c853;
+  color: white;
+  font-weight: bold;
+}
+
   </style>
 
   <script>
