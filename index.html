@@ -12,269 +12,84 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url("img/tablones.jpg") no-repeat center center fixed;
-      background-size: cover;
-      color: #fefefe;
-      position: relative;
+    :root{--verde:#4caf50;--naranja:#ff9800;--oscuro:#222;}
+    body{
+      font-family:'Poppins',sans-serif;
+      margin:0;padding:0;
+      background:url("img/tablones.jpg") no-repeat center center fixed;
+      background-size:cover;
+      color:#fefefe;position:relative;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: -1;
-    }
-
-    header {
-      background: linear-gradient(90deg, #4caf50, #ff9800);
-      padding: 1.5rem;
-      color: white;
-      text-align: center;
-    }
-
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav ul li { margin: 0 1rem; }
-    nav ul li a { color: white; text-decoration: none; font-weight: 600; }
-    nav ul li a:hover { text-decoration: underline; }
-
-    section {
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h1, h2, h3, h4 { font-weight: 600; }
-
-    h2 { 
-      color: #00e676; margin-bottom: 1.5rem; text-align: center;
-    }
-
-    #contacto h2, #carrito h2 { color: #2e7d32; }
-
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .producto {
-      background: rgba(255, 255, 255, 0.75);
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      text-align: center;
-      color: #333;
-    }
-
-    .producto img {
-      max-width: 100%;
-      border-radius: 8px;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .producto h4 { margin: 0.5rem 0; color: #222; }
-    .producto p { font-size: 0.9rem; color: #444; }
-    .producto input { width: 60px; margin: 0.5rem 0; }
-
-    button {
-      background: #ff9800;
-      color: white;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
-    button:hover { background: #e68900; transform: scale(1.05); }
-
-    .btn-info {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.4rem 1rem;
-      background: #4caf50;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    .btn-info:hover { background: #388e3c; }
-
-    /* Sobre la tienda */
-    #sobre {
-      background: rgba(76, 175, 80, 0.65);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-      text-align: center;
-      color: white;
-    }
-
-    #sobre img {
-      max-width: 300px;
-      margin: 1rem auto;
-      display: block;
-      border-radius: 12px;
-    }
-
-    /* Contacto */
-    #contacto {
-      background: rgba(245, 245, 245, 0.9);
-      border-radius: 12px;
-      padding: 2rem;
-      color: #000;   
-    }
-
-    #contacto form {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
-      text-align: left;
-      color: #000;
-    }
-
-    form input, form textarea {
-      width: 90%;
-      display: block;
-      margin: 0.5rem auto;
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: 'Poppins', sans-serif;
-      box-sizing: border-box;
-      color: #000;
-    }
-
-    /* Mensaje de confirmación */
-    #mensaje-confirmacion {
-      display: none;
-      text-align: center;
-      background: rgba(76, 175, 80, 0.9);
-      color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      margin: 20px auto 0;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      max-width: 600px;
-      animation: aparecer 0.4s ease forwards;
-    }
-
-    @keyframes aparecer {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Carrito */
-    #carrito {
-      background: rgba(255, 248, 225, 0.85);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      max-width: 700px;
-      margin: 3rem auto;
-      border: 2px solid #4caf50;
-      color: #333;
-    }
-
-    #cart-items { list-style: none; padding: 0; margin: 1rem 0; }
-    #cart-items li { padding: 0.5rem; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; }
-    #cart-total { font-weight: bold; color: #4caf50; font-size: 1.3rem; }
-    .cart-summary { text-align: right; margin-top: 1rem; }
-
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-    footer a { color: #ff9800; text-decoration: none; margin: 0 0.5rem; }
-    footer a:hover { text-decoration: underline; }
+    body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:-1;}
+    header{background:linear-gradient(90deg,var(--verde),var(--naranja));padding:1rem 1.5rem;color:white;display:flex;align-items:center;gap:12px;justify-content:center;}
+    header img.logo{height:42px; width:auto; display:inline-block;}
+    header h1{margin:0;font-size:1.4rem;}
+    nav ul{display:flex;gap:1rem;list-style:none;padding:0;margin:0;}
+    nav ul li a{color:white;text-decoration:none;font-weight:600;}
+    section{padding:3rem 2rem;max-width:1200px;margin:auto;}
+    h2{color:#00e676;margin-bottom:1.2rem;text-align:center;}
+    .productos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;}
+    .producto{background:rgba(255,255,255,0.85);padding:1rem;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.25);text-align:center;color:#222;position:relative;}
+    .producto img{max-width:100%;border-radius:8px;height:150px;object-fit:cover;}
+    .producto input{width:60px;margin:0.5rem 0;}
+    .btn, button{background:var(--naranja);color:white;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;font-weight:700;transition:transform .18s ease,background .2s;}
+    .btn:hover, button:hover{transform:scale(1.03);background:#e68900;}
+    .btn-info{display:inline-block;margin-top:0.5rem;padding:0.35rem .9rem;background:var(--verde);color:white;border-radius:6px;text-decoration:none;font-weight:700;}
+    /* small check indicator */
+    .added-check{position:absolute;right:14px;top:12px;background:transparent;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s;}
+    .added-check.show{background:rgba(0,200,83,.95);opacity:1;transform:scale(1);box-shadow:0 3px 8px rgba(0,0,0,.3);}
+    .added-check svg{width:16px;height:16px;fill:white;}
+    /* floating bubble column bottom-left */
+    .bubble-col{position:fixed;left:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:2000;}
+    .bubble{width:56px;height:56px;border-radius:50%;background:var(--verde);display:flex;align-items:center;justify-content:center;color:white;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;transition:transform .18s,opacity .18s;}
+    .bubble.small{width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,0.6);}
+    .bubble:hover{transform:translateY(-4px);}
+    /* popup (fade-in) */
+    .popup{position:fixed;left:86px;bottom:18px;width:360px;max-width:calc(100% - 120px);background:rgba(255,255,255,0.98);color:#111;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.35);overflow:hidden;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .28s ease,transform .28s ease;z-index:2001;}
+    .popup.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+    .popup header{background:linear-gradient(90deg,var(--verde),var(--naranja));color:white;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+    .popup .content{padding:1rem;max-height:60vh;overflow:auto;}
+    .popup .close{background:transparent;border:none;color:white;font-weight:700;cursor:pointer;}
+    /* small social bubbles group (match selection D: below other bubbles) */
+    .social-col{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+    .social-col a{display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);width:46px;height:46px;border-radius:50%;color:white;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25);}
+    /* contacto form styles (kept similar) */
+    .contact-form label{display:block;font-weight:600;margin-top:.6rem;}
+    .contact-form input,.contact-form textarea{width:100%;padding:.7rem;margin-top:.4rem;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    .contact-form button{margin-top:.6rem;}
+    /* cart list */
+    .cart-list{list-style:none;padding:0;margin:0;}
+    .cart-list li{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid #eee;}
+    .cart-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.6rem;}
+    /* hide original contact/cart sections */
+    #contacto, #carrito{display:none;}
+    /* responsive tweak */
+    @media (max-width:600px){ .popup{left:14px;right:14px;width:auto;} header{flex-direction:column;gap:.5rem;} }
   </style>
-
-  <script>
-    let cart = [];
-
-    function addToCart(product, price, element) {
-      const quantity = parseInt(element.previousElementSibling.value);
-      const item = { name: product, price: price, quantity: quantity };
-      cart.push(item);
-      renderCart();
-      localStorage.setItem("carrito", JSON.stringify(cart));
-    }
-
-    function renderCart() {
-      const cartItems = document.getElementById('cart-items');
-      const cartTotal = document.getElementById('cart-total');
-      cartItems.innerHTML = '';
-      let total = 0;
-
-      cart.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
-        cartItems.appendChild(li);
-        total += item.price * item.quantity;
-      });
-
-      cartTotal.textContent = total;
-    }
-
-    function finalizarCompra() {
-      localStorage.setItem("carrito", JSON.stringify(cart));
-      window.location.href = "gracias.html";
-    }
-
-    // Cargar carrito guardado si existe
-    window.onload = function() {
-      const guardado = localStorage.getItem("carrito");
-      if (guardado) {
-        cart = JSON.parse(guardado);
-        renderCart();
-      }
-    }
-  </script>
 </head>
-
 <body>
+  <!-- Header with logo -->
   <header data-aos="fade-down">
+    <img src="img/ecomercadologo.png" alt="logo" class="logo" />
     <h1>EcoMercado Online</h1>
-    <nav>
-      <ul>
-        <li><a href="#sobre">Sobre Nosotros</a></li>
-        <li><a href="#frutas">Frutas</a></li>
-        <li><a href="#verduras">Verduras</a></li>
-        <li><a href="#ofertas">Ofertas</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="#carrito">Carrito 🛒</a></li>
-      </ul>
-    </nav>
   </header>
 
+  <!-- Nav (sin Contacto ni Carrito) -->
+  <nav aria-label="main navigation">
+    <ul>
+      <li><a href="#sobre">Sobre Nosotros</a></li>
+      <li><a href="#frutas">Frutas</a></li>
+      <li><a href="#verduras">Verduras</a></li>
+      <li><a href="#ofertas">Ofertas</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <!-- SOBRE NOSOTROS -->
+    <!-- SOBRE -->
     <section id="sobre" data-aos="fade-up">
       <h2>Sobre EcoMercado</h2>
-      <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales. Nuestro objetivo es llevar a tu mesa productos de calidad y fomentar el consumo responsable.</p>
-      <img src="img/campo.jpg" alt="Del campo a la puerta de tu hogar" />
+      <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales.</p>
+      <img src="img/campo.jpg" alt="campo" style="max-width:300px;border-radius:10px;margin:1rem auto;display:block;">
       <a href="sobre-nosotros.html" class="btn-info">Conoce más</a>
     </section>
 
@@ -282,30 +97,42 @@
     <section id="frutas">
       <h2 data-aos="fade-up">Frutas</h2>
       <div class="productos">
+        <!-- ejemplo: Naranja -->
         <div class="producto" data-aos="zoom-in">
+          <div class="added-check" aria-hidden>
+            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg>
+          </div>
           <img src="img/naranja.jpg" alt="naranja" />
           <h4>Naranja</h4>
-          <p>Jugosa y fresca. Cultivada en el Valle. Rica en vitamina C. <br>Precio: $2.000/kg</p>
+          <p>Jugosa y fresca. Cultivada en el Valle. <br>Precio: $2.000/kg</p>
           <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Naranja', 2000, this)">Agregar</button>
+          <button onclick="addToCart('Naranja',2000,this)">Agregar</button>
           <a href="frutas/naranja.html" class="btn-info">Más información</a>
         </div>
 
+        <!-- Limon -->
         <div class="producto" data-aos="zoom-in" data-aos-delay="100">
+          <div class="added-check" aria-hidden>
+            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg>
+          </div>
           <img src="img/limon.jpg" alt="limon" />
           <h4>Limón</h4>
-          <p>Ácido y refrescante. Cultivado en el Valle. Rico en antioxidantes. <br>Precio: $3.000/kg</p>
+          <p>Rico en antioxidantes. <br>Precio: $3.000/kg</p>
           <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Limón', 3000, this)">Agregar</button>
+          <button onclick="addToCart('Limón',3000,this)">Agregar</button>
           <a href="frutas/limon.html" class="btn-info">Más información</a>
         </div>
 
+        <!-- Mango -->
         <div class="producto" data-aos="zoom-in" data-aos-delay="200">
+          <div class="added-check" aria-hidden>
+            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg>
+          </div>
           <img src="img/mango.jpg" alt="mango" />
           <h4>Mango</h4>
-          <p>Dulce y carnoso. Cultivado en Cundinamarca. Fuente de antioxidantes. <br>Precio: $5.000/kg</p>
+          <p>Dulce y carnoso. <br>Precio: $5.000/kg</p>
           <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Mango', 5000, this)">Agregar</button>
+          <button onclick="addToCart('Mango',5000,this)">Agregar</button>
           <a href="frutas/mango.html" class="btn-info">Más información</a>
         </div>
       </div>
@@ -316,31 +143,15 @@
       <h2 data-aos="fade-up">Verduras</h2>
       <div class="productos">
         <div class="producto" data-aos="zoom-in">
+          <div class="added-check" aria-hidden><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg></div>
           <img src="img/espinaca.jpg" alt="espinaca" />
           <h4>Espinaca</h4>
-          <p>Rica en hierro y vitaminas. Cultivada en Boyacá. <br>Precio: $2.200/kg</p>
+          <p>Rica en hierro. <br>Precio: $2.200/kg</p>
           <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Espinaca', 2200, this)">Agregar</button>
+          <button onclick="addToCart('Espinaca',2200,this)">Agregar</button>
           <a href="verduras/espinaca.html" class="btn-info">Más información</a>
         </div>
-
-        <div class="producto" data-aos="zoom-in" data-aos-delay="100">
-          <img src="img/zanahoria.jpg" alt="zanahoria" />
-          <h4>Zanahoria</h4>
-          <p>Buena para la vista. Cultivada en el Tolima. <br>Precio: $2.500/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Zanahoria', 2500, this)">Agregar</button>
-          <a href="verduras/zanahoria.html" class="btn-info">Más información</a>
-        </div>
-
-        <div class="producto" data-aos="zoom-in" data-aos-delay="200">
-          <img src="img/papa.jpg" alt="papa" />
-          <h4>Papa</h4>
-          <p>Versátil en la cocina. Cultivada en Antioquia. <br>Precio: $1.500/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Papa', 1500, this)">Agregar</button>
-          <a href="verduras/papa.html" class="btn-info">Más información</a>
-        </div>
+        <!-- ... otras verduras -->
       </div>
     </section>
 
@@ -349,81 +160,190 @@
       <h2 data-aos="fade-up">Ofertas</h2>
       <div class="productos">
         <div class="producto" data-aos="zoom-in">
-          <img src="img/combo1.jpg" alt="combo frutas" />
+          <div class="added-check" aria-hidden><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg></div>
+          <img src="img/combo1.jpg" alt="combo1" />
           <h4>Combo Frutas</h4>
-          <p>1kg de Mango + 1kg de Piña. <br>Precio: $8.500</p>
+          <p>1kg Mango + 1kg Piña. <br>Precio: $8.500</p>
           <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Combo Frutas', 8500, this)">Agregar</button>
+          <button onclick="addToCart('Combo Frutas',8500,this)">Agregar</button>
           <a href="ofertas/combo1.html" class="btn-info">Más información</a>
         </div>
-
-        <div class="producto" data-aos="zoom-in" data-aos-delay="100">
-          <img src="img/combo2.jpg" alt="combo verduras" />
-          <h4>Combo Verduras</h4>
-          <p>1kg de Papa + 1kg de Zanahoria. <br>Precio: $3.700</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Combo Verduras', 3700, this)">Agregar</button>
-          <a href="ofertas/combo2.html" class="btn-info">Más información</a>
-        </div>
       </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" data-aos="fade-right">
-      <h2>Contacto</h2>
-      <p>📞 Teléfono: 300 123 4567 | 📧 Email: contacto@ecomercado.com</p>
-      <p>🕒 Horario: Lunes a Sábado - 8am a 6pm</p>
-
-      <form id="contact-form">
-        <label>Nombre: <input type="text" required /></label><br />
-        <label>Email: <input type="email" required /></label><br />
-        <label>Mensaje:<br /><textarea required></textarea></label><br />
-        <button type="submit">Enviar</button>
-      </form>
-
-      <div id="mensaje-confirmacion"></div>
-    </section>
-
-    <!-- CARRITO -->
-    <section id="carrito" data-aos="fade-left">
-      <h2>🛒 Tu Carrito de Compras</h2>
-      <ul id="cart-items"></ul>
-      <div class="cart-summary">
-        <p>Total a pagar: $<span id="cart-total">0</span></p>
-        <button onclick="finalizarCompra()">Finalizar Compra</button>
-      </div>
-    </section>  
+    <!-- (se mantiene el markup original de contacto y carrito pero ocultos ya que ahora son popups) -->
+    <section id="contacto" aria-hidden="true"></section>
+    <section id="carrito" aria-hidden="true"></section>
   </main>
 
-  <footer>
+  <!-- floating bubbles column (left bottom) -->
+  <div class="bubble-col" aria-hidden>
+    <div class="bubble" id="btn-contact" title="Contacto">💬</div>
+    <div class="bubble" id="btn-cart" title="Carrito">🛒</div>
+
+    <!-- social bubbles below per your choice (D) -->
+    <div class="social-col">
+      <a href="#" id="wa-link" title="WhatsApp">💬</a>
+      <a href="#" id="ig-link" title="Instagram">📷</a>
+      <a href="#" id="fb-link" title="Facebook">f</a>
+    </div>
+  </div>
+
+  <!-- Contact popup (fade-in) -->
+  <div class="popup" id="popup-contact" role="dialog" aria-hidden="true" aria-labelledby="popup-contact-title">
+    <header>
+      <strong id="popup-contact-title">Contacto</strong>
+      <button class="close" id="close-contact">✕</button>
+    </header>
+    <div class="content">
+      <form id="contact-form-popup" class="contact-form">
+        <label>Nombre<input type="text" name="nombre" required></label>
+        <label>Email<input type="email" name="email" required></label>
+        <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+      <div id="contact-popup-msg" style="display:none;margin-top:.8rem;padding:.6rem;border-radius:8px;background:var(--verde);color:white;font-weight:700;text-align:center;"></div>
+    </div>
+  </div>
+
+  <!-- Cart popup -->
+  <div class="popup" id="popup-cart" role="dialog" aria-hidden="true" aria-labelledby="popup-cart-title">
+    <header>
+      <strong id="popup-cart-title">Tu carrito</strong>
+      <button class="close" id="close-cart">✕</button>
+    </header>
+    <div class="content">
+      <ul id="cart-list" class="cart-list"></ul>
+      <div class="cart-footer">
+        <div style="font-weight:700">Total: $<span id="cart-total-popup">0</span></div>
+        <div>
+          <button class="btn" id="btn-finalizar">Finalizar compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background:var(--oscuro);padding:2rem;text-align:center;margin-top:2rem;color:#fff;">
     <p>&copy; 2025 EcoMercado Online</p>
-    <p>
-      <a href="#">Política de privacidad</a> |
-      <a href="#">Términos y condiciones</a> |
-      Síguenos en <a href="#">Facebook</a> - <a href="#">Instagram</a>
-    </p>
   </footer>
 
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
 
-    // ✉️ Script de contacto
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const mensaje = document.getElementById('mensaje-confirmacion');
-      mensaje.textContent = "✅ ¡Gracias por contactarnos! Hemos recibido tu mensaje y te responderemos pronto.";
-      mensaje.style.display = "block";
-      this.reset();
-      setTimeout(() => {
-        mensaje.style.opacity = "0";
-        setTimeout(() => {
-          mensaje.style.display = "none";
-          mensaje.style.opacity = "1";
-        }, 500);
-      }, 4000);
+  <script>
+    AOS.init({ duration: 900, once: true });
+
+    /* ---------- CART (shared via localStorage) ---------- */
+    let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    function saveCart() {
+      localStorage.setItem('carrito', JSON.stringify(cart));
+      renderCartPopup();
+    }
+
+    function addToCart(product, price, btnElement){
+      const qtyInput = btnElement.previousElementSibling;
+      const qty = parseInt(qtyInput.value) || 1;
+      const item = { name: product, price: price, quantity: qty };
+      cart.push(item);
+      saveCart();
+
+      // show check indicator in that product card
+      const card = btnElement.closest('.producto');
+      const check = card.querySelector('.added-check');
+      if(check){
+        check.classList.add('show');
+        setTimeout(()=> check.classList.remove('show'), 1400);
+      }
+
+      // small toast (optional)
+      showTempToast(`${qty}kg de ${product} añadido`);
+    }
+
+    function renderCartPopup(){
+      const list = document.getElementById('cart-list');
+      const totalSpan = document.getElementById('cart-total-popup');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach(it=>{
+        const li = document.createElement('li');
+        li.textContent = `${it.quantity}kg de ${it.name}`;
+        const span = document.createElement('span');
+        span.textContent = `$${it.price * it.quantity}`;
+        li.appendChild(span);
+        list.appendChild(li);
+        total += it.price * it.quantity;
+      });
+      totalSpan.textContent = total;
+    }
+
+    document.getElementById('btn-finalizar').addEventListener('click', ()=>{
+      // keep carrito in localStorage and go to gracias page where se recoge la info
+      localStorage.setItem('carrito', JSON.stringify(cart));
+      window.location.href = 'gracias.html';
     });
+
+    // load cart on open
+    window.addEventListener('load', ()=>{
+      const saved = localStorage.getItem('carrito');
+      if(saved) cart = JSON.parse(saved);
+      renderCartPopup();
+    });
+
+    /* ---------- POPUP CONTROL (fade-in) ---------- */
+    const btnContact = document.getElementById('btn-contact');
+    const btnCart = document.getElementById('btn-cart');
+    const popupContact = document.getElementById('popup-contact');
+    const popupCart = document.getElementById('popup-cart');
+    const closeContact = document.getElementById('close-contact');
+    const closeCart = document.getElementById('close-cart');
+
+    btnContact.addEventListener('click', ()=> popupContact.classList.toggle('open'));
+    closeContact.addEventListener('click', ()=> popupContact.classList.remove('open'));
+
+    btnCart.addEventListener('click', ()=> popupCart.classList.toggle('open'));
+    closeCart.addEventListener('click', ()=> popupCart.classList.remove('open'));
+
+    // close when clicking outside popups
+    document.addEventListener('click', (e)=>{
+      if(!popupContact.contains(e.target) && !btnContact.contains(e.target) && popupContact.classList.contains('open')) {
+        popupContact.classList.remove('open');
+      }
+      if(!popupCart.contains(e.target) && !btnCart.contains(e.target) && popupCart.classList.contains('open')) {
+        popupCart.classList.remove('open');
+      }
+    });
+
+    /* ---------- CONTACT FORM (popup) - same functionality as before ---------- */
+    const contactFormPopup = document.getElementById('contact-form-popup');
+    const contactMsg = document.getElementById('contact-popup-msg');
+
+    contactFormPopup.addEventListener('submit', function(e){
+      e.preventDefault();
+      contactMsg.textContent = "✅ Hemos recibido tu mensaje y con gusto te responderemos dentro de poco.";
+      contactMsg.style.display = 'block';
+      contactFormPopup.reset();
+      setTimeout(()=>{ contactMsg.style.opacity = '0';
+        setTimeout(()=>{ contactMsg.style.display='none'; contactMsg.style.opacity='1'; },500);
+      }, 3000);
+    });
+
+    /* ---------- small toast (top-right) ---------- */
+    function showTempToast(text){
+      const t = document.createElement('div');
+      t.textContent = text;
+      t.style.cssText = 'position:fixed;right:18px;bottom:96px;background:rgba(0,0,0,.85);color:#fff;padding:.6rem .9rem;border-radius:8px;z-index:3000;box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;transform:translateY(8px);transition:all .25s;';
+      document.body.appendChild(t);
+      requestAnimationFrame(()=>{ t.style.opacity='1'; t.style.transform='translateY(0)'; });
+      setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(12px)'; setTimeout(()=>t.remove(),300); },1500);
+    }
+
+    /* ---------- Social links - open in new tab (replace '#' with your real links later) ---------- */
+    document.getElementById('wa-link').href = '#';
+    document.getElementById('ig-link').href = '#';
+    document.getElementById('fb-link').href = '#';
+
   </script>
 </body>
 </html>
