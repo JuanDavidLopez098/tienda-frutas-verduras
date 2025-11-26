@@ -31,6 +31,8 @@
       z-index: -1;
     }
 
+    /* ---------------- HEADER ---------------- */
+
     header {
       background: linear-gradient(90deg, #4caf50, #ff9800);
       padding: 1.5rem;
@@ -39,14 +41,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 18px;
     }
 
     header img {
-      width: 55px;
-      height: 55px;
+      width: 85px;
+      height: 85px;
       object-fit: contain;
     }
+
+    /* ------------ MENÚ con fondo elegante ------------- */
 
     nav ul {
       display: flex;
@@ -54,10 +58,25 @@
       list-style: none;
       padding: 0;
       margin: 0;
+      gap: 15px;
     }
-    nav ul li { margin: 0 1rem; }
-    nav ul li a { color: white; text-decoration: none; font-weight: 600; }
-    nav ul li a:hover { text-decoration: underline; }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 8px;
+      transition: 0.3s ease;
+      backdrop-filter: blur(3px);
+    }
+
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ---------------- SECCIONES ---------------- */
 
     section {
       padding: 3rem 2rem;
@@ -66,9 +85,37 @@
     }
 
     h1, h2, h3, h4 { font-weight: 600; }
+
     h2 { 
-      color: #00e676; margin-bottom: 1.5rem; text-align: center;
+      color: #00e676;
+      margin-bottom: 1.5rem;
+      text-align: center;
     }
+
+    /* ----------- SOBRE NOSOTROS ------------- */
+
+    #sobre {
+      background: rgba(76, 175, 80, 0.65);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      text-align: center;
+      color: white;
+    }
+
+    #sobre img {
+      max-width: 300px;
+      border-radius: 12px;
+      display: block;
+      margin: 1rem auto;
+    }
+
+    #sobre .btn-info {
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+    /* -------------- PRODUCTOS --------------- */
 
     .productos {
       display: grid;
@@ -92,8 +139,6 @@
       object-fit: cover;
     }
 
-    .producto input { width: 60px; margin: 0.5rem 0; }
-
     button {
       background: #ff9800;
       color: white;
@@ -102,9 +147,13 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      transition: transform 0.2s ease, background 0.3s ease;
+      transition: transform 0.2s ease;
     }
-    button:hover { background: #e68900; transform: scale(1.05); }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #e68900;
+    }
 
     .btn-info {
       display: inline-block;
@@ -117,28 +166,12 @@
       font-weight: bold;
       transition: background 0.3s ease;
     }
-    .btn-info:hover { background: #388e3c; }
 
-    #sobre {
-      background: rgba(76, 175, 80, 0.65);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-      text-align: center;
-      color: white;
+    .btn-info:hover {
+      background: #388e3c;
     }
 
-    #sobre img { max-width: 300px; border-radius: 12px; }
-
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-
-    /* ------------------- POP UPS FLOTANTES ------------------- */
+    /* ---------------- POP UPS ---------------- */
 
     .floating-buttons {
       position: fixed;
@@ -146,31 +179,31 @@
       bottom: 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       z-index: 9000;
     }
 
     .float-btn {
-      width: 60px;
-      height: 60px;
       background: #4caf50;
+      padding: 12px 18px;
+      border-radius: 25px;
       color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
+      font-weight: 700;
+      font-size: 15px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      transition: transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease;
+      white-space: nowrap;
     }
 
-    .float-btn:hover { transform: scale(1.1); }
+    .float-btn:hover {
+      transform: scale(1.05);
+    }
 
     .popup-box {
       position: fixed;
-      bottom: 100px;
-      right: 95px;
+      bottom: 110px;
+      right: 20px;
       width: 330px;
       background: white;
       color: black;
@@ -178,7 +211,7 @@
       padding: 1rem;
       box-shadow: 0 8px 22px rgba(0,0,0,0.4);
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.25s ease;
       z-index: 9100;
     }
 
@@ -189,20 +222,25 @@
 
     .popup-header {
       font-weight: 700;
-      margin-bottom: 0.8rem;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      margin-bottom: 0.8rem;
     }
 
-    .close-popup { cursor: pointer; font-size: 20px; font-weight: bold; }
+    .close-popup {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-    .popup-box input, .popup-box textarea {
-      width: 95%;
-      padding: 6px;
-      margin: 6px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
     }
 
   </style>
@@ -222,11 +260,12 @@
     function renderCart() {
       const cartItems = document.getElementById('cart-items');
       const cartTotal = document.getElementById('cart-total');
-      cartItems.innerHTML = '';
+
+      cartItems.innerHTML = "";
       let total = 0;
 
       cart.forEach(item => {
-        const li = document.createElement('li');
+        const li = document.createElement("li");
         li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
         cartItems.appendChild(li);
         total += item.price * item.quantity;
@@ -253,16 +292,18 @@
 
 <body>
 
-<!-- BOTONES FLOTANTES -->
+<!-- ---------------- BOTONES FLOTANTES ---------------- -->
+
 <div class="floating-buttons">
-  <div class="float-btn" id="btn-contacto">💬</div>
-  <div class="float-btn" id="btn-carrito">🛒</div>
+  <div class="float-btn" id="btn-contacto">📩 Contáctanos</div>
+  <div class="float-btn" id="btn-carrito">🛒 Carrito</div>
 </div>
 
-<!-- POPUP CONTACTO -->
+<!-- ---------------- POPUP CONTACTO ---------------- -->
+
 <div class="popup-box" id="popup-contacto">
   <div class="popup-header">
-    <span>Contacto</span>
+    <span>Contáctanos</span>
     <span class="close-popup" onclick="cerrarPopup('popup-contacto')">✖</span>
   </div>
 
@@ -279,10 +320,11 @@
   <p id="popup-msg" style="display:none;background:#4caf50;color:white;padding:8px;border-radius:6px;margin-top:8px;">¡Mensaje enviado!</p>
 </div>
 
-<!-- POPUP CARRITO -->
+<!-- ---------------- POPUP CARRITO ---------------- -->
+
 <div class="popup-box" id="popup-carrito">
   <div class="popup-header">
-    <span>Tu Carrito</span>
+    <span>Mi Carrito</span>
     <span class="close-popup" onclick="cerrarPopup('popup-carrito')">✖</span>
   </div>
 
@@ -294,7 +336,7 @@
   </button>
 </div>
 
-<!-- ------------------------ CONTENIDO ORIGINAL ------------------------ -->
+<!-- ---------------------- CONTENIDO ---------------------- -->
 
 <header data-aos="fade-down">
   <img src="img/ecomercadologo.png" alt="logo">
@@ -315,8 +357,8 @@
   <!-- SOBRE NOSOTROS -->
   <section id="sobre" data-aos="fade-up">
     <h2>Sobre EcoMercado</h2>
-    <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales.</p>
-    <img src="img/campo.jpg" />
+    <p>Somos un mercado virtual comprometido con la salud...</p>
+    <img src="img/campo.jpg" alt="campo">
     <a href="sobre-nosotros.html" class="btn-info">Conoce más</a>
   </section>
 
@@ -422,7 +464,6 @@
   <p>&copy; 2025 EcoMercado Online</p>
 </footer>
 
-<!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 1000, once: true });
@@ -453,4 +494,3 @@
 
 </body>
 </html>
-
