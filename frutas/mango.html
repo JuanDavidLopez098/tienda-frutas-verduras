@@ -17,6 +17,44 @@
     nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: 600; }
     nav a:hover { text-decoration: underline; }
 
+    /* Logo más pequeño en páginas internas */
+    .logo-header.interno {
+      height:55px;
+    }
+
+    /* ===== MENÚ IGUAL AL DEL INDEX ===== */
+header {
+  background: linear-gradient(90deg, #4caf50, #ff9800);
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+nav ul li a:hover {
+  background: rgba(255,255,255,0.25);
+}
+
     /* Fondo difuminado */
     main {
       background: url("../img/mango.jpg") no-repeat center center/cover;
@@ -91,16 +129,21 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1 data-aos="fade-down">EcoMercado Online</h1>
-    <nav>
-      <a href="../index.html">Inicio</a>
-      <a href="../index.html#frutas">Frutas</a>
-      <a href="../index.html#verduras">Verduras</a>
-      <a href="../index.html#ofertas">Ofertas</a>
-      <a href="../index.html#contacto">Contacto</a>
-    </nav>
-  </header>
+  <header data-aos="fade-down" class="header-menu">
+  <div class="header-top">
+    <img src="../img/ecomercadologo.png" alt="logo" class="logo-header">
+    <h1>EcoMercado Online</h1>
+  </div>
+
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="../index.html#sobre">Sobre Nosotros</a></li>
+      <li><a href="../index.html#frutas">Frutas</a></li>
+      <li><a href="../index.html#verduras">Verduras</a></li>
+      <li><a href="../index.html#ofertas">Ofertas</a></li>
+    </ul>
+  </nav>
+</header>
 
   <main>
     <div class="detalle" data-aos="fade-up">
