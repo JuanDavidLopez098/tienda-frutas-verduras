@@ -33,48 +33,53 @@
 
     /* ---------------- HEADER ---------------- */
 
-    header {
-      background: linear-gradient(90deg, #4caf50, #ff9800);
-      padding: 1.5rem;
-      color: white;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-    }
+   .header-menu {
+  background: linear-gradient(90deg, #4caf50, #ff9800);
+  padding: 1.5rem 1rem 0.5rem;
+  color: white;
+  text-align: center;
+}
 
-    header img {
-      width: 85px;
-      height: 85px;
-      object-fit: contain;
-    }
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    /* ------------ MENÚ con fondo elegante ------------- */
+.logo-header {
+  width: 85px;   /* Ajustable más grande o más pequeño */
+  margin-bottom: 0.4rem;
+}
 
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      gap: 15px;
-    }
+.nav-bar {
+  margin-top: 0.8rem;
+  background: rgba(255,255,255,0.15);
+  padding: 0.6rem 0;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
 
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      padding: 8px 16px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 8px;
-      transition: 0.3s ease;
-      backdrop-filter: blur(3px);
-    }
+.nav-bar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
 
-    nav ul li a:hover {
-      background: rgba(255,255,255,0.3);
-    }
+.nav-bar ul li a {
+  color: white;
+  font-weight: 600;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.25s ease;
+}
+
+.nav-bar ul li a:hover {
+  background: rgba(255,255,255,0.28);
+}
 
     /* ---------------- SECCIONES ---------------- */
 
@@ -351,19 +356,21 @@
 
 <!-- ---------------------- CONTENIDO ---------------------- -->
 
-<header data-aos="fade-down">
-  <img src="img/ecomercadologo.png" alt="logo">
-  <h1>EcoMercado Online</h1>
-</header>
+<header data-aos="fade-down" class="header-menu">
+  <div class="header-top">
+    <img src="img/ecomercadologo.png" alt="logo" class="logo-header">
+    <h1>EcoMercado Online</h1>
+  </div>
 
-<nav>
-  <ul>
-    <li><a href="#sobre">Sobre Nosotros</a></li>
-    <li><a href="#frutas">Frutas</a></li>
-    <li><a href="#verduras">Verduras</a></li>
-    <li><a href="#ofertas">Ofertas</a></li>
-  </ul>
-</nav>
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="#sobre">Sobre Nosotros</a></li>
+      <li><a href="#frutas">Frutas</a></li>
+      <li><a href="#verduras">Verduras</a></li>
+      <li><a href="#ofertas">Ofertas</a></li>
+    </ul>
+  </nav>
+</header>
 
 <main>
 
