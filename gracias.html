@@ -4,87 +4,251 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gracias por tu compra - EcoMercado</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    body{font-family:'Poppins',sans-serif;margin:0;padding:0;background:url('img/tablones.jpg') no-repeat center center/cover;color:#fff;}
-    .wrap{max-width:900px;margin:3.5rem auto;padding:1rem;}
-    .card{background:rgba(0,0,0,0.72);padding:1.5rem;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.4);}
-    header{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:1rem;}
-    header img{height:48px;}
-    h1{color:#4caf50;margin:0;text-align:center;}
-    ul{list-style:none;padding:0;margin:1rem 0;}
-    li{padding:.5rem 0;border-bottom:1px dashed rgba(255,255,255,.08);display:flex;justify-content:space-between;}
-    .form-envio{background:rgba(255,255,255,0.06);padding:1rem;border-radius:8px;margin-top:1rem;color:#fff;}
-    .form-envio label{display:block;margin:.5rem 0;font-weight:600;}
-    .form-envio input{width:100%;padding:.6rem;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#fff;}
-    .note{margin-top:1rem;background:rgba(255,255,255,0.04);padding:.8rem;border-radius:6px;color:#ffeb3b;}
-    .btn{background:#4caf50;padding:.6rem .9rem;border-radius:8px;border:none;color:#fff;font-weight:700;cursor:pointer;margin-top:.6rem;}
-    .volver{display:inline-block;margin-top:1rem;padding:.5rem .9rem;background:#ff9800;color:#fff;border-radius:6px;text-decoration:none;}
+    body{
+      font-family:'Poppins',sans-serif;
+      margin:0;
+      padding:0;
+      background:url('img/tablones.jpg') no-repeat center center/cover;
+      color:#fff;
+    }
+
+    .wrap{
+      max-width:900px;
+      margin:3.5rem auto;
+      padding:1rem;
+    }
+
+    .card{
+      background:rgba(0,0,0,0.72);
+      padding:2rem;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(0,0,0,.4);
+    }
+
+    /* ---------- LOGO MEJORADO ---------- */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      margin-bottom:1rem;
+    }
+
+    header img{
+      height:90px;
+      width:auto;
+      filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+    }
+
+    h1{
+      color:#4caf50;
+      margin:0;
+      text-align:center;
+      font-size:2rem;
+    }
+
+    ul{
+      list-style:none;
+      padding:0;
+      margin:1rem 0;
+    }
+
+    li{
+      padding:.5rem 0;
+      border-bottom:1px dashed rgba(255,255,255,.12);
+      display:flex;
+      justify-content:space-between;
+    }
+
+    .form-envio{
+      background:rgba(255,255,255,0.06);
+      padding:1rem;
+      border-radius:8px;
+      margin-top:1rem;
+      color:#fff;
+    }
+
+    .form-envio label{
+      display:block;
+      margin:.7rem 0;
+      font-weight:600;
+    }
+
+    .form-envio input{
+      width:100%;
+      padding:.7rem;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,.12);
+      background:transparent;
+      color:#fff;
+      font-size:1rem;
+    }
+
+    .note{
+      margin-top:1rem;
+      background:rgba(255,255,255,0.08);
+      padding:.8rem;
+      border-radius:6px;
+      color:#ffeb3b;
+      font-weight:600;
+    }
+
+    .btn{
+      background:#4caf50;
+      padding:.7rem .9rem;
+      border-radius:8px;
+      border:none;
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      font-size:1rem;
+      transition:0.2s ease;
+    }
+
+    .btn:hover{
+      background:#43a047;
+      transform:scale(1.03);
+    }
+
+    .volver{
+      display:inline-block;
+      margin-top:1rem;
+      padding:.5rem .9rem;
+      background:#ff9800;
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.2s ease;
+    }
+
+    .volver:hover{
+      background:#e68900;
+      transform:scale(1.03);
+    }
+
+    #envio-msg{
+      display:none;
+      margin-top:.8rem;
+      padding:.8rem;
+      border-radius:8px;
+      background:#00c853;
+      color:#fff;
+      font-weight:700;
+      text-align:center;
+    }
   </style>
 </head>
+
 <body>
+
   <div class="wrap">
     <div class="card">
-      <header>
-        <img src="img/ecomercadologo.png" alt="logo">
-      </header>
-      <h1>🎉 ¡Gracias por tu compra!</h1>
-      <p style="text-align:center;margin-top:.4rem">Tu pedido en <strong>EcoMercado Online</strong> se ha procesado. A continuación, ingresa los datos de envío para completar la orden.</p>
 
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.06);margin:1rem 0">
+      <header>
+        <img src="img/ecomercadologo.png" alt="logo EcoMercado">
+      </header>
+
+      <h1>🎉 ¡Gracias por tu compra!</h1>
+      <p style="text-align:center;margin-top:.6rem;font-size:1.1rem;">
+        Tu pedido en <strong>EcoMercado Online</strong> se ha procesado correctamente.
+        Ahora completa los datos de envío para finalizar la orden.
+      </p>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:1.2rem 0">
 
       <h3>Resumen de tu pedido</h3>
-      <ul id="resumen"></ul>
-      <p style="font-weight:700">Total: $<span id="total"></span></p>
 
+      <ul id="resumen"></ul>
+
+      <p style="font-weight:700;font-size:1.1rem;">Total: $<span id="total"></span></p>
+
+      <!-- DATOS DE ENVÍO -->
       <section class="form-envio">
         <h3>Datos de envío</h3>
+
         <form id="envio-form">
-          <label>Departamento<input type="text" name="departamento" required></label>
-          <label>Barrio<input type="text" name="barrio" required></label>
-          <label>Dirección exacta<input type="text" name="direccion" required></label>
-          <label>Teléfono<input type="tel" name="telefono" required></label>
-          <div style="display:flex;gap:.6rem;align-items:center;">
+
+          <label>Departamento
+            <input type="text" name="departamento" required>
+          </label>
+
+          <label>Barrio
+            <input type="text" name="barrio" required>
+          </label>
+
+          <label>Dirección exacta
+            <input type="text" name="direccion" required>
+          </label>
+
+          <label>Teléfono
+            <input type="tel" name="telefono" required>
+          </label>
+
+          <div style="display:flex;gap:.6rem;align-items:center;margin-top:.6rem;">
             <button type="submit" class="btn">Enviar datos y finalizar</button>
             <a href="index.html" class="volver">Volver a la tienda</a>
           </div>
+
         </form>
-        <div id="envio-msg" style="display:none;margin-top:.8rem;padding:.6rem;border-radius:8px;background:#00c853;color:#fff;font-weight:700;text-align:center;"></div>
+
+        <div id="envio-msg"></div>
       </section>
 
-      <p class="note">💳 Nota: El pago se realizará contraentrega para mayor seguridad.</p>
+      <p class="note">💳 El pago se realizará <strong>contraentrega</strong> para mayor seguridad.</p>
+
     </div>
   </div>
 
   <script>
-    // mostrar resumen desde localStorage
+    // Mostrar resumen desde localStorage
     const resumen = document.getElementById('resumen');
     const totalSpan = document.getElementById('total');
+
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     let total = 0;
+
     carrito.forEach(it=>{
       const li = document.createElement('li');
-      li.textContent = `${it.quantity}kg de ${it.name}`;
-      const span = document.createElement('span');
-      span.textContent = `$${it.price * it.quantity}`;
-      li.appendChild(span);
+
+      li.innerHTML = `
+        <span>${it.quantity}kg de ${it.name}</span>
+        <span>$${it.price * it.quantity}</span>
+      `;
+
       resumen.appendChild(li);
       total += it.price * it.quantity;
     });
+
     totalSpan.textContent = total;
 
-    // formulario de envio
+    // Formulario envío
     document.getElementById('envio-form').addEventListener('submit', function(e){
       e.preventDefault();
-      // simular envio: mostrar mensaje, limpiar carrito y formulario
+
       const msg = document.getElementById('envio-msg');
-      msg.textContent = '✅ Información recibida. Prepararemos tu pedido y te contactaremos. Gracias.';
+      msg.textContent = '✅ Información recibida. Prepararemos tu pedido y te contactaremos. ¡Gracias!';
+
       msg.style.display = 'block';
-      // limpiar carrito (opcional) y localStorage
+
+      // limpiar carrito y formulario
       localStorage.removeItem('carrito');
       this.reset();
-      setTimeout(()=>{ msg.style.opacity='0'; setTimeout(()=>{ msg.style.display='none'; msg.style.opacity='1'; window.location.href='index.html'; },500); }, 2200);
+
+      setTimeout(()=>{
+        msg.style.opacity='0';
+        setTimeout(()=>{
+          msg.style.display='none';
+          msg.style.opacity='1';
+          window.location.href='index.html';
+        }, 500);
+      }, 2300);
     });
   </script>
+
 </body>
 </html>
