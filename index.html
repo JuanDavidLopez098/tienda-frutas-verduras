@@ -132,6 +132,12 @@
       color: #333;
     }
 
+    /* Efecto verde temporal al añadir al carrito */
+     .producto.added {
+      background: rgba(76, 175, 80, 0.65) !important;
+      transition: background 0.6s ease;
+    }
+
     .producto img {
       max-width: 100%;
       border-radius: 8px;
@@ -249,13 +255,20 @@
     let cart = [];
 
     function addToCart(product, price, element) {
-      const quantity = parseInt(element.previousElementSibling.value);
-      const item = { name: product, price: price, quantity: quantity };
-      cart.push(item);
+  const quantity = parseInt(element.previousElementSibling.value);
+  const item = { name: product, price: price, quantity: quantity };
+  cart.push(item);
+  renderCart();
+  localStorage.setItem("carrito", JSON.stringify(cart));
 
-      renderCart();
-      localStorage.setItem("carrito", JSON.stringify(cart));
-    }
+  // --- EFECTO VERDE EN LA TARJETA ---
+  const card = element.closest('.producto');
+  card.classList.add('added');
+
+  setTimeout(() => {
+    card.classList.remove('added');
+  }, 2000);
+}
 
     function renderCart() {
       const cartItems = document.getElementById('cart-items');
