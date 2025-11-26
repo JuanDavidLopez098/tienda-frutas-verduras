@@ -12,338 +12,445 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    :root{--verde:#4caf50;--naranja:#ff9800;--oscuro:#222;}
-    body{
-      font-family:'Poppins',sans-serif;
-      margin:0;padding:0;
-      background:url("img/tablones.jpg") no-repeat center center fixed;
-      background-size:cover;
-      color:#fefefe;position:relative;
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("img/tablones.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fefefe;
+      position: relative;
     }
-    body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:-1;}
-    header{background:linear-gradient(90deg,var(--verde),var(--naranja));padding:1rem 1.5rem;color:white;display:flex;align-items:center;gap:12px;justify-content:center;}
-    header img.logo{height:42px; width:auto; display:inline-block;}
-    header h1{margin:0;font-size:1.4rem;}
-    nav ul{display:flex;gap:1rem;list-style:none;padding:0;margin:0;}
-    nav ul li a{color:white;text-decoration:none;font-weight:600;}
-    section{padding:3rem 2rem;max-width:1200px;margin:auto;}
-    h2{color:#00e676;margin-bottom:1.2rem;text-align:center;}
-    .productos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;}
-    .producto{background:rgba(255,255,255,0.85);padding:1rem;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.25);text-align:center;color:#222;position:relative;}
-    .producto img{max-width:100%;border-radius:8px;height:150px;object-fit:cover;}
-    .producto input{width:60px;margin:0.5rem 0;}
-    .btn, button{background:var(--naranja);color:white;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;font-weight:700;transition:transform .18s ease,background .2s;}
-    .btn:hover, button:hover{transform:scale(1.03);background:#e68900;}
-    .btn-info{display:inline-block;margin-top:0.5rem;padding:0.35rem .9rem;background:var(--verde);color:white;border-radius:6px;text-decoration:none;font-weight:700;}
-    /* small check indicator */
-    .added-check{position:absolute;right:14px;top:12px;background:transparent;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s;}
-    .added-check.show{background:rgba(0,200,83,.95);opacity:1;transform:scale(1);box-shadow:0 3px 8px rgba(0,0,0,.3);}
-    .added-check svg{width:16px;height:16px;fill:white;}
-    /* floating bubble column bottom-left */
-    .bubble-col{position:fixed;left:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:2000;}
-    .bubble{width:56px;height:56px;border-radius:50%;background:var(--verde);display:flex;align-items:center;justify-content:center;color:white;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;transition:transform .18s,opacity .18s;}
-    .bubble.small{width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,0.6);}
-    .bubble:hover{transform:translateY(-4px);}
-    /* popup (fade-in) */
-    .popup{position:fixed;left:86px;bottom:18px;width:360px;max-width:calc(100% - 120px);background:rgba(255,255,255,0.98);color:#111;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.35);overflow:hidden;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .28s ease,transform .28s ease;z-index:2001;}
-    .popup.open{opacity:1;pointer-events:auto;transform:translateY(0);}
-    .popup header{background:linear-gradient(90deg,var(--verde),var(--naranja));color:white;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;}
-    .popup .content{padding:1rem;max-height:60vh;overflow:auto;}
-    .popup .close{background:transparent;border:none;color:white;font-weight:700;cursor:pointer;}
-    /* small social bubbles group (match selection D: below other bubbles) */
-    .social-col{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
-    .social-col a{display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);width:46px;height:46px;border-radius:50%;color:white;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25);}
-    /* contacto form styles (kept similar) */
-    .contact-form label{display:block;font-weight:600;margin-top:.6rem;}
-    .contact-form input,.contact-form textarea{width:100%;padding:.7rem;margin-top:.4rem;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    .contact-form button{margin-top:.6rem;}
-    /* cart list */
-    .cart-list{list-style:none;padding:0;margin:0;}
-    .cart-list li{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid #eee;}
-    .cart-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.6rem;}
-    /* hide original contact/cart sections */
-    #contacto, #carrito{display:none;}
-    /* responsive tweak */
-    @media (max-width:600px){ .popup{left:14px;right:14px;width:auto;} header{flex-direction:column;gap:.5rem;} }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    header {
+      background: linear-gradient(90deg, #4caf50, #ff9800);
+      padding: 1.5rem;
+      color: white;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    header img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li { margin: 0 1rem; }
+    nav ul li a { color: white; text-decoration: none; font-weight: 600; }
+    nav ul li a:hover { text-decoration: underline; }
+
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1, h2, h3, h4 { font-weight: 600; }
+    h2 { 
+      color: #00e676; margin-bottom: 1.5rem; text-align: center;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .producto {
+      background: rgba(255, 255, 255, 0.75);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      text-align: center;
+      color: #333;
+    }
+
+    .producto img {
+      max-width: 100%;
+      border-radius: 8px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .producto input { width: 60px; margin: 0.5rem 0; }
+
+    button {
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    button:hover { background: #e68900; transform: scale(1.05); }
+
+    .btn-info {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: #4caf50;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .btn-info:hover { background: #388e3c; }
+
+    #sobre {
+      background: rgba(76, 175, 80, 0.65);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      text-align: center;
+      color: white;
+    }
+
+    #sobre img { max-width: 300px; border-radius: 12px; }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* ------------------- POP UPS FLOTANTES ------------------- */
+
+    .floating-buttons {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 9000;
+    }
+
+    .float-btn {
+      width: 60px;
+      height: 60px;
+      background: #4caf50;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+
+    .float-btn:hover { transform: scale(1.1); }
+
+    .popup-box {
+      position: fixed;
+      bottom: 100px;
+      right: 95px;
+      width: 330px;
+      background: white;
+      color: black;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+      display: none;
+      animation: fadeIn 0.3s ease;
+      z-index: 9100;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .popup-header {
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-popup { cursor: pointer; font-size: 20px; font-weight: bold; }
+
+    .popup-box input, .popup-box textarea {
+      width: 95%;
+      padding: 6px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
   </style>
-</head>
-<body>
-  <!-- Header with logo -->
-  <header data-aos="fade-down">
-    <img src="img/ecomercadologo.png" alt="logo" class="logo" />
-    <h1>EcoMercado Online</h1>
-  </header>
-
-  <!-- Nav (sin Contacto ni Carrito) -->
-  <nav aria-label="main navigation">
-    <ul>
-      <li><a href="#sobre">Sobre Nosotros</a></li>
-      <li><a href="#frutas">Frutas</a></li>
-      <li><a href="#verduras">Verduras</a></li>
-      <li><a href="#ofertas">Ofertas</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <!-- SOBRE -->
-    <section id="sobre" data-aos="fade-up">
-      <h2>Sobre EcoMercado</h2>
-      <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales.</p>
-      <img src="img/campo.jpg" alt="campo" style="max-width:300px;border-radius:10px;margin:1rem auto;display:block;">
-      <a href="sobre-nosotros.html" class="btn-info">Conoce más</a>
-    </section>
-
-    <!-- FRUTAS -->
-    <section id="frutas">
-      <h2 data-aos="fade-up">Frutas</h2>
-      <div class="productos">
-        <!-- ejemplo: Naranja -->
-        <div class="producto" data-aos="zoom-in">
-          <div class="added-check" aria-hidden>
-            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg>
-          </div>
-          <img src="img/naranja.jpg" alt="naranja" />
-          <h4>Naranja</h4>
-          <p>Jugosa y fresca. Cultivada en el Valle. <br>Precio: $2.000/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Naranja',2000,this)">Agregar</button>
-          <a href="frutas/naranja.html" class="btn-info">Más información</a>
-        </div>
-
-        <!-- Limon -->
-        <div class="producto" data-aos="zoom-in" data-aos-delay="100">
-          <div class="added-check" aria-hidden>
-            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg>
-          </div>
-          <img src="img/limon.jpg" alt="limon" />
-          <h4>Limón</h4>
-          <p>Rico en antioxidantes. <br>Precio: $3.000/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Limón',3000,this)">Agregar</button>
-          <a href="frutas/limon.html" class="btn-info">Más información</a>
-        </div>
-
-        <!-- Mango -->
-        <div class="producto" data-aos="zoom-in" data-aos-delay="200">
-          <div class="added-check" aria-hidden>
-            <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg>
-          </div>
-          <img src="img/mango.jpg" alt="mango" />
-          <h4>Mango</h4>
-          <p>Dulce y carnoso. <br>Precio: $5.000/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Mango',5000,this)">Agregar</button>
-          <a href="frutas/mango.html" class="btn-info">Más información</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- VERDURAS -->
-    <section id="verduras">
-      <h2 data-aos="fade-up">Verduras</h2>
-      <div class="productos">
-        <div class="producto" data-aos="zoom-in">
-          <div class="added-check" aria-hidden><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg></div>
-          <img src="img/espinaca.jpg" alt="espinaca" />
-          <h4>Espinaca</h4>
-          <p>Rica en hierro. <br>Precio: $2.200/kg</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Espinaca',2200,this)">Agregar</button>
-          <a href="verduras/espinaca.html" class="btn-info">Más información</a>
-        </div>
-        <!-- ... otras verduras -->
-      </div>
-    </section>
-
-    <!-- OFERTAS -->
-    <section id="ofertas">
-      <h2 data-aos="fade-up">Ofertas</h2>
-      <div class="productos">
-        <div class="producto" data-aos="zoom-in">
-          <div class="added-check" aria-hidden><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2 18.6 6.8z"/></svg></div>
-          <img src="img/combo1.jpg" alt="combo1" />
-          <h4>Combo Frutas</h4>
-          <p>1kg Mango + 1kg Piña. <br>Precio: $8.500</p>
-          <input type="number" min="1" value="1" />
-          <button onclick="addToCart('Combo Frutas',8500,this)">Agregar</button>
-          <a href="ofertas/combo1.html" class="btn-info">Más información</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- (se mantiene el markup original de contacto y carrito pero ocultos ya que ahora son popups) -->
-    <section id="contacto" aria-hidden="true"></section>
-    <section id="carrito" aria-hidden="true"></section>
-  </main>
-
-  <!-- floating bubbles column (left bottom) -->
-  <div class="bubble-col" aria-hidden>
-    <div class="bubble" id="btn-contact" title="Contacto">💬</div>
-    <div class="bubble" id="btn-cart" title="Carrito">🛒</div>
-
-    <!-- social bubbles below per your choice (D) -->
-    <div class="social-col">
-      <a href="#" id="wa-link" title="WhatsApp">💬</a>
-      <a href="#" id="ig-link" title="Instagram">📷</a>
-      <a href="#" id="fb-link" title="Facebook">f</a>
-    </div>
-  </div>
-
-  <!-- Contact popup (fade-in) -->
-  <div class="popup" id="popup-contact" role="dialog" aria-hidden="true" aria-labelledby="popup-contact-title">
-    <header>
-      <strong id="popup-contact-title">Contacto</strong>
-      <button class="close" id="close-contact">✕</button>
-    </header>
-    <div class="content">
-      <form id="contact-form-popup" class="contact-form">
-        <label>Nombre<input type="text" name="nombre" required></label>
-        <label>Email<input type="email" name="email" required></label>
-        <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
-        <button type="submit" class="btn">Enviar</button>
-      </form>
-      <div id="contact-popup-msg" style="display:none;margin-top:.8rem;padding:.6rem;border-radius:8px;background:var(--verde);color:white;font-weight:700;text-align:center;"></div>
-    </div>
-  </div>
-
-  <!-- Cart popup -->
-  <div class="popup" id="popup-cart" role="dialog" aria-hidden="true" aria-labelledby="popup-cart-title">
-    <header>
-      <strong id="popup-cart-title">Tu carrito</strong>
-      <button class="close" id="close-cart">✕</button>
-    </header>
-    <div class="content">
-      <ul id="cart-list" class="cart-list"></ul>
-      <div class="cart-footer">
-        <div style="font-weight:700">Total: $<span id="cart-total-popup">0</span></div>
-        <div>
-          <button class="btn" id="btn-finalizar">Finalizar compra</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer style="background:var(--oscuro);padding:2rem;text-align:center;margin-top:2rem;color:#fff;">
-    <p>&copy; 2025 EcoMercado Online</p>
-  </footer>
-
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <script>
-    AOS.init({ duration: 900, once: true });
+    let cart = [];
 
-    /* ---------- CART (shared via localStorage) ---------- */
-    let cart = JSON.parse(localStorage.getItem('carrito')) || [];
-
-    function saveCart() {
-      localStorage.setItem('carrito', JSON.stringify(cart));
-      renderCartPopup();
-    }
-
-    function addToCart(product, price, btnElement){
-      const qtyInput = btnElement.previousElementSibling;
-      const qty = parseInt(qtyInput.value) || 1;
-      const item = { name: product, price: price, quantity: qty };
+    function addToCart(product, price, element) {
+      const quantity = parseInt(element.previousElementSibling.value);
+      const item = { name: product, price: price, quantity: quantity };
       cart.push(item);
-      saveCart();
 
-      // show check indicator in that product card
-      const card = btnElement.closest('.producto');
-      const check = card.querySelector('.added-check');
-      if(check){
-        check.classList.add('show');
-        setTimeout(()=> check.classList.remove('show'), 1400);
-      }
-
-      // small toast (optional)
-      showTempToast(`${qty}kg de ${product} añadido`);
+      renderCart();
+      localStorage.setItem("carrito", JSON.stringify(cart));
     }
 
-    function renderCartPopup(){
-      const list = document.getElementById('cart-list');
-      const totalSpan = document.getElementById('cart-total-popup');
-      list.innerHTML = '';
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
       let total = 0;
-      cart.forEach(it=>{
+
+      cart.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${it.quantity}kg de ${it.name}`;
-        const span = document.createElement('span');
-        span.textContent = `$${it.price * it.quantity}`;
-        li.appendChild(span);
-        list.appendChild(li);
-        total += it.price * it.quantity;
+        li.innerHTML = `<span>${item.quantity}kg de ${item.name}</span><span>$${item.price * item.quantity}</span>`;
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
       });
-      totalSpan.textContent = total;
+
+      cartTotal.textContent = total;
     }
 
-    document.getElementById('btn-finalizar').addEventListener('click', ()=>{
-      // keep carrito in localStorage and go to gracias page where se recoge la info
-      localStorage.setItem('carrito', JSON.stringify(cart));
-      window.location.href = 'gracias.html';
-    });
-
-    // load cart on open
-    window.addEventListener('load', ()=>{
-      const saved = localStorage.getItem('carrito');
-      if(saved) cart = JSON.parse(saved);
-      renderCartPopup();
-    });
-
-    /* ---------- POPUP CONTROL (fade-in) ---------- */
-    const btnContact = document.getElementById('btn-contact');
-    const btnCart = document.getElementById('btn-cart');
-    const popupContact = document.getElementById('popup-contact');
-    const popupCart = document.getElementById('popup-cart');
-    const closeContact = document.getElementById('close-contact');
-    const closeCart = document.getElementById('close-cart');
-
-    btnContact.addEventListener('click', ()=> popupContact.classList.toggle('open'));
-    closeContact.addEventListener('click', ()=> popupContact.classList.remove('open'));
-
-    btnCart.addEventListener('click', ()=> popupCart.classList.toggle('open'));
-    closeCart.addEventListener('click', ()=> popupCart.classList.remove('open'));
-
-    // close when clicking outside popups
-    document.addEventListener('click', (e)=>{
-      if(!popupContact.contains(e.target) && !btnContact.contains(e.target) && popupContact.classList.contains('open')) {
-        popupContact.classList.remove('open');
-      }
-      if(!popupCart.contains(e.target) && !btnCart.contains(e.target) && popupCart.classList.contains('open')) {
-        popupCart.classList.remove('open');
-      }
-    });
-
-    /* ---------- CONTACT FORM (popup) - same functionality as before ---------- */
-    const contactFormPopup = document.getElementById('contact-form-popup');
-    const contactMsg = document.getElementById('contact-popup-msg');
-
-    contactFormPopup.addEventListener('submit', function(e){
-      e.preventDefault();
-      contactMsg.textContent = "✅ Hemos recibido tu mensaje y con gusto te responderemos dentro de poco.";
-      contactMsg.style.display = 'block';
-      contactFormPopup.reset();
-      setTimeout(()=>{ contactMsg.style.opacity = '0';
-        setTimeout(()=>{ contactMsg.style.display='none'; contactMsg.style.opacity='1'; },500);
-      }, 3000);
-    });
-
-    /* ---------- small toast (top-right) ---------- */
-    function showTempToast(text){
-      const t = document.createElement('div');
-      t.textContent = text;
-      t.style.cssText = 'position:fixed;right:18px;bottom:96px;background:rgba(0,0,0,.85);color:#fff;padding:.6rem .9rem;border-radius:8px;z-index:3000;box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;transform:translateY(8px);transition:all .25s;';
-      document.body.appendChild(t);
-      requestAnimationFrame(()=>{ t.style.opacity='1'; t.style.transform='translateY(0)'; });
-      setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(12px)'; setTimeout(()=>t.remove(),300); },1500);
+    function finalizarCompra() {
+      localStorage.setItem("carrito", JSON.stringify(cart));
+      window.location.href = "gracias.html";
     }
 
-    /* ---------- Social links - open in new tab (replace '#' with your real links later) ---------- */
-    document.getElementById('wa-link').href = '#';
-    document.getElementById('ig-link').href = '#';
-    document.getElementById('fb-link').href = '#';
-
+    window.onload = function() {
+      const guardado = localStorage.getItem("carrito");
+      if (guardado) {
+        cart = JSON.parse(guardado);
+        renderCart();
+      }
+    }
   </script>
+
+</head>
+
+<body>
+
+<!-- BOTONES FLOTANTES -->
+<div class="floating-buttons">
+  <div class="float-btn" id="btn-contacto">💬</div>
+  <div class="float-btn" id="btn-carrito">🛒</div>
+</div>
+
+<!-- POPUP CONTACTO -->
+<div class="popup-box" id="popup-contacto">
+  <div class="popup-header">
+    <span>Contacto</span>
+    <span class="close-popup" onclick="cerrarPopup('popup-contacto')">✖</span>
+  </div>
+
+  <form id="contact-popup-form">
+    <label>Nombre:<input type="text" required></label>
+    <label>Email:<input type="email" required></label>
+    <label>Mensaje:<textarea required></textarea></label>
+
+    <button type="submit" style="background:#4caf50;color:white;padding:8px;border:none;border-radius:6px;width:100%;">
+      Enviar
+    </button>
+  </form>
+
+  <p id="popup-msg" style="display:none;background:#4caf50;color:white;padding:8px;border-radius:6px;margin-top:8px;">¡Mensaje enviado!</p>
+</div>
+
+<!-- POPUP CARRITO -->
+<div class="popup-box" id="popup-carrito">
+  <div class="popup-header">
+    <span>Tu Carrito</span>
+    <span class="close-popup" onclick="cerrarPopup('popup-carrito')">✖</span>
+  </div>
+
+  <ul id="cart-items"></ul>
+  <p><strong>Total: $<span id="cart-total">0</span></strong></p>
+
+  <button onclick="finalizarCompra()" style="background:#ff9800;color:white;padding:8px;border:none;border-radius:6px;width:100%;">
+    Finalizar Compra
+  </button>
+</div>
+
+<!-- ------------------------ CONTENIDO ORIGINAL ------------------------ -->
+
+<header data-aos="fade-down">
+  <img src="img/ecomercadologo.png" alt="logo">
+  <h1>EcoMercado Online</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#sobre">Sobre Nosotros</a></li>
+    <li><a href="#frutas">Frutas</a></li>
+    <li><a href="#verduras">Verduras</a></li>
+    <li><a href="#ofertas">Ofertas</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="sobre" data-aos="fade-up">
+    <h2>Sobre EcoMercado</h2>
+    <p>Somos un mercado virtual comprometido con la salud, ofreciendo frutas y verduras frescas, cultivadas por productores locales.</p>
+    <img src="img/campo.jpg" />
+    <a href="sobre-nosotros.html" class="btn-info">Conoce más</a>
+  </section>
+
+  <!-- FRUTAS -->
+  <section id="frutas">
+    <h2 data-aos="fade-up">Frutas</h2>
+    <div class="productos">
+
+      <div class="producto" data-aos="zoom-in">
+        <img src="img/naranja.jpg" />
+        <h4>Naranja</h4>
+        <p>Precio: $2.000/kg</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Naranja',2000,this)">Agregar</button>
+        <a href="frutas/naranja.html" class="btn-info">Más información</a>
+      </div>
+
+      <div class="producto" data-aos="zoom-in" data-aos-delay="100">
+        <img src="img/limon.jpg" />
+        <h4>Limón</h4>
+        <p>Precio: $3.000/kg</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Limón',3000,this)">Agregar</button>
+        <a href="frutas/limon.html" class="btn-info">Más información</a>
+      </div>
+
+      <div class="producto" data-aos="zoom-in" data-aos-delay="200">
+        <img src="img/mango.jpg" />
+        <h4>Mango</h4>
+        <p>Precio: $5.000/kg</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Mango',5000,this)">Agregar</button>
+        <a href="frutas/mango.html" class="btn-info">Más información</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VERDURAS -->
+  <section id="verduras">
+    <h2 data-aos="fade-up">Verduras</h2>
+    <div class="productos">
+
+      <div class="producto" data-aos="zoom-in">
+        <img src="img/espinaca.jpg" />
+        <h4>Espinaca</h4>
+        <p>Precio: $2.200/kg</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Espinaca',2200,this)">Agregar</button>
+        <a href="verduras/espinaca.html" class="btn-info">Más información</a>
+      </div>
+
+      <div class="producto" data-aos="zoom-in" data-aos-delay="100">
+        <img src="img/zanahoria.jpg" />
+        <h4>Zanahoria</h4>
+        <p>Precio: $2.500/kg</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Zanahoria',2500,this)">Agregar</button>
+        <a href="verduras/zanahoria.html" class="btn-info">Más información</a>
+      </div>
+
+      <div class="producto" data-aos="zoom-in" data-aos-delay="200">
+        <img src="img/papa.jpg" />
+        <h4>Papa</h4>
+        <p>Precio: $1.500/kg</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Papa',1500,this)">Agregar</button>
+        <a href="verduras/papa.html" class="btn-info">Más información</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OFERTAS -->
+  <section id="ofertas">
+    <h2 data-aos="fade-up">Ofertas</h2>
+    <div class="productos">
+
+      <div class="producto" data-aos="zoom-in">
+        <img src="img/combo1.jpg" />
+        <h4>Combo Frutas</h4>
+        <p>Precio: $8.500</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Combo Frutas',8500,this)">Agregar</button>
+        <a href="ofertas/combo1.html" class="btn-info">Más información</a>
+      </div>
+
+      <div class="producto" data-aos="zoom-in" data-aos-delay="100">
+        <img src="img/combo2.jpg" />
+        <h4>Combo Verduras</h4>
+        <p>Precio: $3.700</p>
+        <input type="number" min="1" value="1" />
+        <button onclick="addToCart('Combo Verduras',3700,this)">Agregar</button>
+        <a href="ofertas/combo2.html" class="btn-info">Más información</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 EcoMercado Online</p>
+</footer>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  function cerrarPopup(id){
+    document.getElementById(id).style.display = "none";
+  }
+
+  document.getElementById("btn-contacto").onclick = function(){
+    document.getElementById("popup-contacto").style.display = "block";
+  };
+
+  document.getElementById("btn-carrito").onclick = function(){
+    document.getElementById("popup-carrito").style.display = "block";
+  };
+
+  document.getElementById("contact-popup-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("popup-msg").style.display = "block";
+
+    setTimeout(() => {
+      document.getElementById("popup-msg").style.display = "none";
+    }, 2000);
+
+    this.reset();
+  });
+</script>
+
 </body>
 </html>
+
