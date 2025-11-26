@@ -12,6 +12,35 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
+
+    /* BOTÓN FLOTANTE WHATSAPP */
+.btn-whatsapp {
+    position: fixed;
+    bottom: 150px;     /* Ajusta para que NO choque con contacto/carrito */
+    right: 25px;
+    background: #25d366;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    transition: all .3s ease;
+    z-index: 9999;
+    animation: fadeInWhats .7s ease forwards;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5d;
+    transform: scale(1.08);
+}
+
+@keyframes fadeInWhats {
+    from { opacity: 0; transform: translateY(15px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+    
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -413,6 +442,11 @@
 
 <body>
 
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<div class="btn-whatsapp" onclick="window.open('https://wa.me/573027437166', '_blank')">
+    💬 WhatsApp
+</div>
+  
 <!-- ---------------- BOTONES FLOTANTES ---------------- -->
 
 <div class="floating-buttons">
